@@ -83,7 +83,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>cli.PolicyValidatorCLI</mainClass>
+                            <mainClass>cli.PolicyVerifierCLI</mainClass>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
                     </archive>
@@ -101,7 +101,7 @@
                         </goals>
                         <configuration>
 <!--                            <finalName>PolicyValidatorCLI-${project.version}</finalName>-->
-                            <finalName>PolicyValidatorCLI</finalName>
+                            <finalName>PolicyVerifierCLI</finalName>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <shadedArtifactAttached>true</shadedArtifactAttached>
                             <shadedClassifierName>jar-with-dependencies</shadedClassifierName>
