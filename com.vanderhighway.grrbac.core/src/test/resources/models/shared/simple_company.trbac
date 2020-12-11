@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ASCII"?>
+<trbac:SiteAccessControlSystem xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:trbac="https://vanderhighway.com/trbac/2020" name="DummySecurityPolicy">
+  <authorizationPolicy name="DummyAuthenticationPolicy">
+    <users UR="Employee" name="User1"/>
+    <users UR="Employee Manager" name="User2"/>
+    <users name="User3"/>
+    <users name="User4"/>
+    <roles RU="User1 User2" RD="Office" name="Employee" constrainedBy="R1 R2 R3 R4 R7"/>
+    <roles RU="User2" RD="Canteen" name="Manager" constrainedBy="R5 R6"/>
+    <demarcations DR="Employee" DP="OpenOffice BreakRoom" name="Office" constrainedBy="R1 R3 R5 R7"/>
+    <demarcations DR="Manager" DP="BreakRoom Kitchen" name="Canteen" constrainedBy="R2 R4 R6"/>
+    <permissions PD="Office" name="OpenOffice" PO="ZoneOpenOffice"/>
+    <permissions PD="Office Canteen" name="BreakRoom" PO="ZoneBreakRoom"/>
+    <permissions PD="Canteen" name="Kitchen" PO="ZoneKitchen"/>
+  </authorizationPolicy>
+  <schedule name="DummySchedule" startDate="2020-01-01" endDate="2030-01-01">
+    <temporalContexts name="Always"/>
+    <temporalContexts name="WorkingHours" temporalGrantRules="R1 R5">
+      <instances start="480" end="1019" daySchedule="Monday" name="WorkingHours-Monday-1"/>
+      <instances start="480" end="1019" daySchedule="Tuesday" name="WorkingHours-Tuesday-1"/>
+      <instances start="480" end="1019" daySchedule="Wednesday" name="WorkingHours-Wednesday-1"/>
+      <instances start="480" end="1019" daySchedule="Thursday" name="WorkingHours-Thursday-1"/>
+      <instances start="480" end="1019" daySchedule="Friday" name="WorkingHours-Friday-1"/>
+    </temporalContexts>
+    <temporalContexts name="LunchBreaks" temporalGrantRules="R2 R6">
+      <instances start="480" end="1019" daySchedule="Monday" name="LunchBreaks-Monday-1"/>
+      <instances start="480" end="1019" daySchedule="Tuesday" name="LunchBreaks-Tuesday-1"/>
+      <instances start="480" end="1019" daySchedule="Wednesday" name="LunchBreaks-Wednesday-1"/>
+      <instances start="480" end="1019" daySchedule="Thursday" name="LunchBreaks-Thursday-1"/>
+      <instances start="480" end="1019" daySchedule="Friday" name="LunchBreaks-Friday-1"/>
+    </temporalContexts>
+    <temporalContexts name="Holidays" temporalGrantRules="R3 R4 R7">
+      <instances start="480" end="1019" daySchedule="25_December" name="Holidays-25_December-1"/>
+    </temporalContexts>
+    <daySchedules xsi:type="trbac:DayOfWeekSchedule" name="Monday" timeRanges="WorkingHours-Monday-1 LunchBreaks-Monday-1"/>
+    <daySchedules xsi:type="trbac:DayOfWeekSchedule" name="Tuesday" timeRanges="WorkingHours-Tuesday-1 LunchBreaks-Tuesday-1"/>
+    <daySchedules xsi:type="trbac:DayOfWeekSchedule" name="Wednesday" timeRanges="WorkingHours-Wednesday-1 LunchBreaks-Wednesday-1"/>
+    <daySchedules xsi:type="trbac:DayOfWeekSchedule" name="Thursday" timeRanges="WorkingHours-Thursday-1 LunchBreaks-Thursday-1"/>
+    <daySchedules xsi:type="trbac:DayOfWeekSchedule" name="Friday" timeRanges="WorkingHours-Friday-1 LunchBreaks-Friday-1"/>
+    <daySchedules xsi:type="trbac:DayOfMonthSchedule" name="25_December" timeRanges="Holidays-25_December-1"/>
+    <temporalGrantRules name="R1" priority="3" enable="true" role="Employee" demarcation="Office" temporalContext="WorkingHours"/>
+    <temporalGrantRules name="R2" priority="3" enable="true" role="Employee" demarcation="Canteen" temporalContext="LunchBreaks"/>
+    <temporalGrantRules name="R3" priority="4" role="Employee" demarcation="Office" temporalContext="Holidays"/>
+    <temporalGrantRules name="R4" priority="4" role="Employee" demarcation="Canteen" temporalContext="Holidays"/>
+    <temporalGrantRules name="R5" priority="3" enable="true" role="Manager" demarcation="Office" temporalContext="WorkingHours"/>
+    <temporalGrantRules name="R6" priority="3" enable="true" role="Manager" demarcation="Canteen" temporalContext="LunchBreaks"/>
+    <temporalGrantRules name="R7" priority="4" role="Employee" demarcation="Office" temporalContext="Holidays"/>
+  </schedule>
+  <securityZones name="ZoneLobby" public="true" reachable="ZoneOpenOffice"/>
+  <securityZones name="ZoneOpenOffice" OP="OpenOffice" reachable="ZoneLobby ZoneBreakRoom"/>
+  <securityZones name="ZoneBreakRoom" OP="BreakRoom" reachable="ZoneOpenOffice ZoneKitchen"/>
+  <securityZones name="ZoneKitchen" OP="Kitchen" reachable="ZoneBreakRoom"/>
+  <authenticationPolicy/>
+</trbac:SiteAccessControlSystem>

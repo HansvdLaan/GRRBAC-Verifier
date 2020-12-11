@@ -1,0 +1,268 @@
+/*******************************************************************************
+ * Policy Queries
+ *******************************************************************************/
+
+package com.vanderhighway.grrbac.patterns
+
+import "https://vanderhighway.com/grrbac/2020"
+import "http://www.eclipse.org/emf/2002/Ecore"
+import java ^java.util.Set
+import java ^java.util.HashSet
+import java ^com.vanderhighway.grrbac.aggregators.distinct
+import java ^com.vanderhighway.grrbac.aggregators.Scenario
+import java ^com.vanderhighway.grrbac.patterns.PolicyAuthorizationRelations
+import java ^com.vanderhighway.grrbac.patterns.PolicyTemporalRelations
+
+// ---- Seperation of Duty ----
+pattern SoDURPattern(constraint: SoDURConstraint, user: User){
+	SoDURConstraint.left(constraint, left);
+	SoDURConstraint.right(constraint, right);
+   	Role.RU(left, user);
+   	Role.RU(right, user);
+}
+
+pattern SoDUDPattern(constraint: SoDUDConstraint, out scenario: java Scenario, user: User){
+	SoDUDConstraint.left(constraint, left);
+	SoDUDConstraint.right(constraint, right);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	find USD(user, scenario, left);
+    find USD(user, scenario, right);
+}
+
+pattern SoDUPPattern(constraint: SoDUPConstraint, scenario: java Scenario, user: User){
+	SoDUPConstraint.left(constraint, left);
+	SoDUPConstraint.right(constraint, right);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	find USP(user, scenario, left);
+    find USP(user, scenario, right);
+}
+
+pattern SoDRDPattern(constraint: SoDRDConstraint, scenario: java Scenario, role: Role){
+	SoDRDConstraint.left(constraint, left);
+	SoDRDConstraint.right(constraint, right);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	find RSD(role, scenario, left);
+    find RSD(role, scenario, right);
+}
+
+pattern SoDRPPattern(constraint: SoDRPConstraint, scenario: java Scenario, role: Role){
+	SoDRPConstraint.left(constraint, left);
+	SoDRPConstraint.right(constraint, right);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	find RSP(role, scenario, left);
+    find RSP(role, scenario, right);
+}
+
+pattern SoDDPPattern(constraint: SoDDPConstraint, demarcation: Demarcation){
+	SoDDPConstraint.left(constraint, left);
+	SoDDPConstraint.right(constraint, right);
+   	Permission.PD(left, demarcation);
+   	Permission.PD(right, demarcation);
+}
+
+// ---------------------
+
+
+// ---- Prerequisite ----
+
+pattern PrerequisiteURPattern(constraint: PrerequisiteURConstraint, user: User){
+	PrerequisiteURConstraint.left(constraint, left);
+	PrerequisiteURConstraint.right(constraint, right);
+   	Role.RU(left, user);
+   	neg Role.RU(right, user);
+}
+
+pattern PrerequisiteUDPattern(constraint: PrerequisiteUDConstraint, scenario: java Scenario, user: User){
+	PrerequisiteUDConstraint.left(constraint, left);
+	PrerequisiteUDConstraint.right(constraint, right);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	find USD(user, scenario, left);
+    neg find USD(user, scenario, right);
+}
+
+pattern PrerequisiteUPPattern(constraint: PrerequisiteUPConstraint, scenario: java Scenario, user: User){
+	PrerequisiteUPConstraint.left(constraint, left);
+	PrerequisiteUPConstraint.right(constraint, right);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	find USP(user, scenario, left);
+    neg find USP(user, scenario, right);
+}
+
+pattern PrerequisiteRDPattern(constraint: PrerequisiteRDConstraint, scenario: java Scenario, role: Role){
+	PrerequisiteRDConstraint.left(constraint, left);
+	PrerequisiteRDConstraint.right(constraint, right);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	find RSD(role, scenario, left);
+    neg find RSD(role, scenario, right);
+}
+
+pattern PrerequisiteRPPattern(constraint: PrerequisiteRPConstraint, scenario: java Scenario, role: Role){
+	PrerequisiteRPConstraint.left(constraint, left);
+	PrerequisiteRPConstraint.right(constraint, right);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	find RSP(role, scenario, left);
+    neg find RSP(role, scenario, right);
+}
+
+pattern PrerequisiteDPPattern(constraint: PrerequisiteDPConstraint, demarcation: Demarcation){
+	PrerequisiteDPConstraint.left(constraint, left);
+	PrerequisiteDPConstraint.right(constraint, right);
+   	Permission.PD(left, demarcation);
+   	Permission.PD(right, demarcation);
+}
+
+// ---------------------
+
+
+
+
+// ---- Binding of Duty ----
+
+pattern BoDURPattern(constraint: BoDURConstraint, user: User){
+	BoDURConstraint.left(constraint, left);
+	BoDURConstraint.right(constraint, right);
+   	Role.RU(left, user);
+   	neg Role.RU(right, user);
+} or {
+	BoDURConstraint.left(constraint, left);
+	BoDURConstraint.right(constraint, right);
+   	neg Role.RU(left, user);
+   	Role.RU(right, user);
+}
+
+pattern BoDUDPattern(constraint: BoDUDConstraint, scenario: java Scenario, user: User){
+	BoDUDConstraint.left(constraint, left);
+	BoDUDConstraint.right(constraint, right);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	find USD(user, scenario, left);
+    neg find USD(user, scenario, right);
+} or {
+	BoDUDConstraint.left(constraint, left);
+	BoDUDConstraint.right(constraint, right);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	neg find USD(user, scenario, left);
+    find USD(user, scenario, right);
+}
+
+pattern BoDUPPattern(constraint: BoDUPConstraint, scenario: java Scenario, user: User){
+	BoDUPConstraint.left(constraint, left);
+	BoDUPConstraint.right(constraint, right);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	find USP(user, scenario, left);
+    neg find USP(user, scenario, right);
+} or {
+    BoDUPConstraint.left(constraint, left);
+	BoDUPConstraint.right(constraint, right);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	neg find USP(user, scenario, left);
+    find USP(user, scenario, right);
+}
+
+pattern BoDRDPattern(constraint: BoDRDConstraint, scenario: java Scenario, role: Role){
+	BoDRDConstraint.left(constraint, left);
+	BoDRDConstraint.right(constraint, right);
+   	find RSD(role, scenario, left);
+    neg find RSD(role, scenario, right);
+} or { 
+	BoDRDConstraint.left(constraint, left);
+	BoDRDConstraint.right(constraint, right);
+   	neg find RSD(role, scenario, left);
+    find RSD(role, scenario, right);
+}
+
+
+pattern BoDRPPattern(constraint: BoDRPConstraint, scenario: java Scenario, role: Role){
+	BoDRPConstraint.left(constraint, left);
+	BoDRPConstraint.right(constraint, right);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	find RSP(role, scenario, left);
+    neg find RSP(role, scenario, right);
+} or {
+	BoDRPConstraint.left(constraint, left);
+	BoDRPConstraint.right(constraint, right);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	neg find RSP(role, scenario, left);
+    find RSP(role, scenario, right);
+}
+
+pattern BoDDPPattern(constraint: BoDDPConstraint, demarcation: Demarcation){
+	BoDDPConstraint.left(constraint, left);
+	BoDDPConstraint.right(constraint, right);
+   	Permission.PD(left, demarcation);
+   	neg Permission.PD(right, demarcation);
+} or {
+	BoDDPConstraint.left(constraint, left);
+	BoDDPConstraint.right(constraint, right);
+   	neg Permission.PD(left, demarcation);
+   	Permission.PD(right, demarcation);
+}
+
+// ---------------------
+
+// Cardinality
+
+pattern CardinalityURPattern(constraint: CardinalityURConstraint, usageCount: java Integer){
+	CardinalityURConstraint.role(constraint, role);
+	CardinalityURConstraint.bound(constraint, bound);
+   	usageCount == count User.UR(_, role);
+   	check(usageCount > bound);
+}
+
+pattern CardinalityUDPattern(constraint: CardinalityUDConstraint, scenario: java Scenario, usageCount: java Integer){
+	CardinalityUDConstraint.demarcation(constraint, demarcation);
+	CardinalityUDConstraint.bound(constraint, bound);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	usageCount == count find USD(_, scenario, demarcation);
+   	check(usageCount > bound);
+}
+
+pattern CardinalityUPPattern(constraint: CardinalityUPConstraint, scenario: java Scenario, usageCount: java Integer){
+	CardinalityUPConstraint.permission(constraint, permission);
+	CardinalityUPConstraint.bound(constraint, bound);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	usageCount == count find USP(_, scenario, permission);
+   	check(usageCount > bound);
+}
+
+pattern CardinalityRDPattern(constraint: CardinalityRDConstraint, scenario: java Scenario, usageCount: java Integer){
+	CardinalityRDConstraint.demarcation(constraint, demarcation);
+	CardinalityRDConstraint.bound(constraint, bound);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	usageCount == count find RSD(_, scenario, demarcation);
+   	check(usageCount > bound);
+}
+
+pattern CardinalityRPPattern(constraint: CardinalityRPConstraint, scenario: java Scenario, usageCount: java Integer){
+	CardinalityRPConstraint.permission(constraint, permission);
+	CardinalityRPConstraint.bound(constraint, bound);
+	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
+	find ScenarioTemporalContext(scenario, context);
+   	usageCount == count find RSP(_, scenario, permission);
+   	check(usageCount > bound);
+}
+
+pattern CardinalityDPPattern(constraint: CardinalityDPConstraint, usageCount: java Integer){
+	CardinalityDPConstraint.permission(constraint, permission);
+	CardinalityDPConstraint.bound(constraint, bound);
+   	usageCount == count Demarcation.DP(_, permission);
+   	check(usageCount > bound);
+}
+
+// ---------------------

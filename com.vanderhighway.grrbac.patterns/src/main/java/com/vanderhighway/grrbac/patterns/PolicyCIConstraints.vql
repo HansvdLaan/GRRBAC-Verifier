@@ -1,0 +1,22 @@
+package com.vanderhighway.grrbac.patterns
+
+import "https://vanderhighway.com/grrbac/2020"
+import "http://www.eclipse.org/emf/2002/Ecore"
+import java ^com.vanderhighway.grrbac.aggregators.distinct
+import java ^com.vanderhighway.grrbac.aggregators.Scenario
+import java ^com.vanderhighway.grrbac.patterns.PolicyTemporalRelations
+import java ^com.vanderhighway.grrbac.patterns.PolicyAuthorizationRelations
+
+pattern UninvocablePermission(user: User, scenario: java Scenario, permission: Permission, zone: SecurityZone) {
+	Permission.PO(permission, zone);
+    find USP(user, scenario, permission);
+    find SecurityZoneAccessAllowed(scenario, zone);
+    neg find SecurityZoneAccessible(user, scenario, zone);
+}
+
+pattern UserCanGetTrapped(user: User, scenario: java Scenario, zone: SecurityZone) {
+    find SecurityZoneAccessible(user, scenario, zone);
+    neg find SecurityZoneLeavable(user, scenario, zone);
+}
+
+

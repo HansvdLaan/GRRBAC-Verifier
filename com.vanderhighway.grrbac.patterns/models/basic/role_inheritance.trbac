@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trbac:Policy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:trbac="https://vanderhighway.com/trbac/2020">
+  <users UR="//@roles.0" name="U1"/>
+  <users UR="//@roles.1" name="U2"/>
+  <users UR="//@roles.2" name="U3"/>
+  <users name="U4"/>
+  <roles RU="//@users.0" RD="//@demarcations.0" seniors="//@roles.1" name="R1"/>
+  <roles RU="//@users.1" RD="//@demarcations.2" juniors="//@roles.0" seniors="//@roles.2" name="R2"/>
+  <roles RU="//@users.2" RD="//@demarcations.3" juniors="//@roles.1" name="R3"/>
+  <demarcations DR="//@roles.0" DP="//@permissions.0" subdemarcations="//@demarcations.1" name="D1"/>
+  <demarcations DP="//@permissions.3" superdemarcations="//@demarcations.0" name="D0"/>
+  <demarcations DR="//@roles.1" DP="//@permissions.1" name="D2"/>
+  <demarcations DR="//@roles.2" DP="//@permissions.2" name="D3"/>
+  <permissions PD="//@demarcations.0" name="P1"/>
+  <permissions PD="//@demarcations.2" name="P2"/>
+  <permissions PD="//@demarcations.3" name="P3"/>
+  <permissions PD="//@demarcations.1" name="P0"/>
+  <constraints xsi:type="trbac:MutualExclusivityConstraint" leftside="//@roles.0" rightside="//@roles.1" name="EX1"/>
+  <constraints xsi:type="trbac:DependencyConstraint" leftside="//@roles.0" rightside="//@roles.2" name="DP1"/>
+</trbac:Policy>

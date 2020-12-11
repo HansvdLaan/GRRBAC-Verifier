@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.vanderhighway.grrbac</groupId>
+	<artifactId>com.vanderhighway.grrbac</artifactId>
+	<version>0.20.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<emf.version>2.10.1.v20140901-1043</emf.version>
+		<viatra.version>2.4.1</viatra.version>
+		<xtend.version>2.21.0</xtend.version>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>all</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>com.vanderhighway.grrbac.model</module>
+				<module>com.vanderhighway.grrbac.patterns</module>
+				<module>com.vanderhighway.grrbac.aggregators</module>
+				<module>com.vanderhighway.grrbac.core</module>
+				<module>com.vanderhighway.grrbac.cli</module>
+				<module>com.vanderhighway.grrbac.examples</module>
+				<module>com.vanderhighway.grrbac.evaluator</module>
+			</modules>
+		</profile>
+	</profiles>
+
+	<repositories>
+		<repository>
+			<id>acceleo</id>
+			<url>https://repo.eclipse.org/content/groups/acceleo</url>
+		</repository>
+		<repository>
+			<id>repo.eclipse.org.viatra</id>
+			<url>https://repo.eclipse.org/content/repositories/viatra-releases/</url>
+		</repository>
+		<repository>
+			<id>my-repo1</id>
+			<name>maven central</name>
+			<url>https://repo1.maven.org/maven2/</url>
+		</repository>
+	</repositories>
+	
+    <!-- Add release repo here instead of snaphots once its ready -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>repo.eclipse.org.viatra</id>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+<!--			<url>https://repo.eclipse.org/content/repositories/viatra-snapshots/</url>-->
+				<url>https://repo.eclipse.org/content/repositories/viatra-releases/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>maven-plugin</id>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<url>https://repo.maven.apache.org/maven2/org/apache/maven/plugins/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+</project>

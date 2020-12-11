@@ -1,0 +1,24 @@
+bin/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+#Generated MDE artifacts
+/com.vanderhighway.grrbac.model.tests/
+/com.vanderhighway.grrbac.model.editor/
+/com.vanderhighway.grrbac.model.edit/
+/com.vanderhighway.grrbac.examples/src/main/java/com/vanderhighway/grrbac/examples/benchmark/

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="grrbac" nsURI="https://vanderhighway.com/grrbac/2020" nsPrefix="grrbac">
+  <eClassifiers xsi:type="ecore:EClass" name="User">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="UR" upperBound="-1" eType="#//Role"
+        eOpposite="#//Role/RU"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Role">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="RU" upperBound="-1" eType="#//User"
+        eOpposite="#//User/UR"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="RD" upperBound="-1" eType="#//Demarcation"
+        eOpposite="#//Demarcation/DR"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="juniors" upperBound="-1"
+        eType="#//Role" eOpposite="#//Role/seniors"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="seniors" upperBound="-1"
+        eType="#//Role" eOpposite="#//Role/juniors"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constrainedBy" upperBound="-1"
+        eType="#//TemporalGrantRule" eOpposite="#//TemporalGrantRule/role"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Demarcation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="DR" upperBound="-1" eType="#//Role"
+        eOpposite="#//Role/RD"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="DP" upperBound="-1" eType="#//Permission"
+        eOpposite="#//Permission/PD"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subdemarcations" upperBound="-1"
+        eType="#//Demarcation" eOpposite="#//Demarcation/superdemarcations"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superdemarcations" upperBound="-1"
+        eType="#//Demarcation" eOpposite="#//Demarcation/subdemarcations"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constrainedBy" upperBound="-1"
+        eType="#//TemporalGrantRule" eOpposite="#//TemporalGrantRule/demarcation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Permission">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="PD" upperBound="-1" eType="#//Demarcation"
+        eOpposite="#//Demarcation/DP"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="PO" eType="#//SACSObject"
+        eOpposite="#//SACSObject/OP"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeRange">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="end" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="validDay" eType="#//ValidDay"
+        eOpposite="#//ValidDay/timeRanges"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="validDayTimeRanges" upperBound="-1"
+        eType="#//ValidDayTimeRange" eOpposite="#//ValidDayTimeRange/temporalContextTimeRanges"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValidDay" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeRanges" upperBound="-1"
+        eType="#//TimeRange" eOpposite="#//TimeRange/validDay"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
+        eType="#//ValidDayTimeRange" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValidDayOfWeek" eSuperTypes="#//ValidDay">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="validDayOfWeekMonth" upperBound="-1"
+        eType="#//ValidDayOfWeekMonth" eOpposite="#//ValidDayOfWeekMonth/validDayOfWeek"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValidDayOfMonth" eSuperTypes="#//ValidDay">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="validDaysOfWeekMonth" upperBound="-1"
+        eType="#//ValidDayOfWeekMonth" eOpposite="#//ValidDayOfWeekMonth/validDayOfMonth"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemporalContext">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
+        eType="#//TimeRange" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="temporalGrantRules" upperBound="-1"
+        eType="#//TemporalGrantRule" eOpposite="#//TemporalGrantRule/temporalContext"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="authorizationConstraints"
+        upperBound="-1" eType="#//PolicyDependentAuthorizationConstraint" eOpposite="#//PolicyDependentAuthorizationConstraint/temporalContext"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="temporalAuthenticationRules"
+        upperBound="-1" eType="#//TemporalAuthenticationRule" eOpposite="#//TemporalAuthenticationRule/temporalContext"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="myScenarios" upperBound="-1"
+        eType="#//MyScenario" eOpposite="#//MyScenario/temporalContexts"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValidDayTimeRange" eSuperTypes="#//TimeRange">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="temporalContextTimeRanges"
+        upperBound="-1" eType="#//TimeRange" eOpposite="#//TimeRange/validDayTimeRanges"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="next" eType="#//ValidDayTimeRange"
+        eOpposite="#//ValidDayTimeRange/previous"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="previous" eType="#//ValidDayTimeRange"
+        eOpposite="#//ValidDayTimeRange/next"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValidDayOfWeekMonth" eSuperTypes="#//ValidDay">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="validDayOfWeek" eType="#//ValidDayOfWeek"
+        eOpposite="#//ValidDayOfWeek/validDayOfWeekMonth"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="validDayOfMonth" eType="#//ValidDayOfMonth"
+        eOpposite="#//ValidDayOfMonth/validDaysOfWeekMonth"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="validDayOfYear" upperBound="-1"
+        eType="#//ValidDayOfYear" eOpposite="#//ValidDayOfYear/validDayOfWeekMonth"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemporalGrantRule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isGrant" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="role" eType="#//Role" eOpposite="#//Role/constrainedBy"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="demarcation" eType="#//Demarcation"
+        eOpposite="#//Demarcation/constrainedBy"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="temporalContext" eType="#//TemporalContext"
+        eOpposite="#//TemporalContext/temporalGrantRules"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SACSObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="OP" eType="#//Permission"
+        eOpposite="#//Permission/PO"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SiteAccessControlSystem">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="authorizationConstraints"
+        upperBound="-1" eType="#//PolicyDependentAuthorizationConstraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="authorizationPolicy" eType="#//AuthorizationPolicy"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contextContainer" eType="#//ContextContainer"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="authenticationPolicy" eType="#//AuthenticationPolicy"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topology" eType="#//AccessControlSystemTopology"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SecurityZone" eSuperTypes="#//SACSObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="public" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reachable" upperBound="-1"
+        eType="#//SecurityZone"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constrainedBy" upperBound="-1"
+        eType="#//TemporalAuthenticationRule" eOpposite="#//TemporalAuthenticationRule/securityZone"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PolicyDependentAuthorizationConstraint"
+      abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Name"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="temporalContext" eType="#//TemporalContext"
+        eOpposite="#//TemporalContext/authorizationConstraints"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryUserConstraint" abstract="true"
+      eSuperTypes="#//PolicyDependentAuthorizationConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#//User"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryUserConstraint" abstract="true"
+      eSuperTypes="#//PolicyDependentAuthorizationConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//User"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//User"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryRoleConstraint" abstract="true"
+      eSuperTypes="#//PolicyDependentAuthorizationConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="role" eType="#//Role"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryRoleConstraint" abstract="true"
+      eSuperTypes="#//PolicyDependentAuthorizationConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Role"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Role"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryDemarcationConstraint" abstract="true"
+      eSuperTypes="#//PolicyDependentAuthorizationConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="demarcation" eType="#//Demarcation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryDemarcationConstraint" abstract="true"
+      eSuperTypes="#//PolicyDependentAuthorizationConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Demarcation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Demarcation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryPermissionConstraint" abstract="true"
+      eSuperTypes="#//PolicyDependentAuthorizationConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="permission" eType="#//Permission"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryPermissionConstraint" abstract="true"
+      eSuperTypes="#//PolicyDependentAuthorizationConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Permission"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Permission"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SoDURConstraint" eSuperTypes="#//BinaryRoleConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SoDUDConstraint" eSuperTypes="#//BinaryDemarcationConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SoDUPConstraint" eSuperTypes="#//BinaryPermissionConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SoDRDConstraint" eSuperTypes="#//BinaryDemarcationConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SoDDPConstraint" eSuperTypes="#//BinaryPermissionConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AuthorizationPolicy">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="users" upperBound="-1"
+        eType="#//User" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roles" upperBound="-1"
+        eType="#//Role" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="demarcations" upperBound="-1"
+        eType="#//Demarcation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="permissions" upperBound="-1"
+        eType="#//Permission" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="temporalGrantRules" upperBound="-1"
+        eType="#//TemporalGrantRule" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrerequisiteURConstraint" eSuperTypes="#//BinaryRoleConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrerequisiteUDConstraint" eSuperTypes="#//BinaryDemarcationConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrerequisiteUPConstraint" eSuperTypes="#//BinaryPermissionConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrerequisiteRDConstraint" eSuperTypes="#//BinaryDemarcationConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrerequisiteRPConstraint" eSuperTypes="#//BinaryPermissionConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrerequisiteDPConstraint" eSuperTypes="#//BinaryPermissionConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BoDURConstraint" eSuperTypes="#//BinaryRoleConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BoDUDConstraint" eSuperTypes="#//BinaryDemarcationConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BoDRDConstraint" eSuperTypes="#//BinaryDemarcationConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BoDUPConstraint" eSuperTypes="#//BinaryPermissionConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BoDRPConstraint" eSuperTypes="#//BinaryPermissionConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BoDDPConstraint" eSuperTypes="#//BinaryPermissionConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CardinalityURConstraint" eSuperTypes="#//UnaryRoleConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bound" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//IntObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CardinalityUDConstraint" eSuperTypes="#//UnaryDemarcationConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bound" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//IntObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CardinalityRDConstraint" eSuperTypes="#//UnaryDemarcationConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bound" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//IntObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CardinalityUPConstraint" eSuperTypes="#//UnaryPermissionConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bound" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//IntObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CardinalityRPConstraint" eSuperTypes="#//UnaryPermissionConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bound" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//IntObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CardinalityDPConstraint" eSuperTypes="#//UnaryPermissionConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bound" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//IntObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContextContainer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="temporalContexts" upperBound="-1"
+        eType="#//TemporalContext" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="validDays" upperBound="-1"
+        eType="#//ValidDay" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="myScenarios" upperBound="-1"
+        eType="#//MyScenario" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValidDayOfYear" eSuperTypes="#//ValidDay">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="validDayOfWeekMonth" eType="#//ValidDayOfWeekMonth"
+        eOpposite="#//ValidDayOfWeekMonth/validDayOfYear"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AuthenticationPolicy">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="temporalAuthenticationRules"
+        upperBound="-1" eType="#//TemporalAuthenticationRule" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemporalAuthenticationRule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="temporalContext" eType="#//TemporalContext"
+        eOpposite="#//TemporalContext/temporalAuthenticationRules"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="securityZone" eType="#//SecurityZone"
+        eOpposite="#//SecurityZone/constrainedBy"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MyScenario">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="temporalContexts" upperBound="-1"
+        eType="#//TemporalContext" eOpposite="#//TemporalContext/myScenarios"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AccessControlSystemTopology">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="securityZones" upperBound="-1"
+        eType="#//SecurityZone" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SoDRPConstraint" eSuperTypes="#//BinaryPermissionConstraint"/>
+</ecore:EPackage>

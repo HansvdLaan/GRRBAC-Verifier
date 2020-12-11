@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="ASCII"?>
+<grrbac:SiteAccessControlSystem xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:grrbac="https://vanderhighway.com/grrbac/2020" name="DummySecurityPolicy">
+  <authorizationConstraints xsi:type="grrbac:BoDUPConstraint" name="ToiletBreak1" temporalContext="Always" left="Workshop" right="ToiletsWorkshop"/>
+  <authorizationConstraints xsi:type="grrbac:BoDUPConstraint" name="ToiletBreak2" temporalContext="Always" left="OpenOffice" right="ToiletsOpenOffice"/>
+  <authorizationPolicy name="DummyAuthorizationPolicy">
+    <users UR="Director" name="Amy"/>
+    <users UR="HeadDesigner" name="Bart"/>
+    <users UR="OperationsManager" name="Christine"/>
+    <users UR="Designer" name="Dave"/>
+    <users UR="Designer" name="Emily"/>
+    <users UR="Operations" name="Frank"/>
+    <users UR="Guard" name="Grace"/>
+    <users UR="Guard" name="Hank"/>
+    <users UR="Cleaner" name="Isaac"/>
+    <users UR="Visitor" name="Julia"/>
+    <roles RU="Julia" name="Visitor" constrainedBy="PE10 PE11"/>
+    <roles seniors="Designer Operations" name="Employee" constrainedBy="PE1"/>
+    <roles seniors="Cleaner Guard" name="Contractor"/>
+    <roles RU="Grace Hank" juniors="Contractor" name="Guard" constrainedBy="PE8"/>
+    <roles RU="Isaac" juniors="Contractor" name="Cleaner" constrainedBy="PE9"/>
+    <roles RU="Frank" juniors="Employee" seniors="OperationsManager" name="Operations"/>
+    <roles RU="Christine" juniors="Operations" seniors="Director" name="OperationsManager" constrainedBy="PE5 PE6"/>
+    <roles RU="Dave Emily" juniors="Employee" seniors="HeadDesigner" name="Designer" constrainedBy="PE2"/>
+    <roles RU="Bart" juniors="Designer" seniors="Director" name="HeadDesigner" constrainedBy="PE3 PE4"/>
+    <roles RU="Amy" juniors="HeadDesigner OperationsManager" name="Director" constrainedBy="PE7"/>
+    <demarcations DP="Lobby OpenOffice Restaurant MeetingRoom1 MeetingRoom2 ToiletsOpenOffice" superdemarcations="Designing ManagingFinances ManagingPeople ManagingStock Guarding Cleaning" name="Working" constrainedBy="PE1"/>
+    <demarcations DP="Workshop Storage ToiletsWorkshop" subdemarcations="Working" name="Designing" constrainedBy="PE2"/>
+    <demarcations DP="Office1 Office2 Storage Workshop ToiletsWorkshop" subdemarcations="Working" name="Guarding" constrainedBy="PE8"/>
+    <demarcations DP="Office1 Office2 Storage Workshop ToiletsWorkshop" subdemarcations="Working" name="Cleaning" constrainedBy="PE9"/>
+    <demarcations DP="ToiletsWorkshop Lobby Workshop" name="Visiting" constrainedBy="PE10"/>
+    <demarcations DP="Vault" subdemarcations="Working" superdemarcations="Managing" name="ManagingFinances"/>
+    <demarcations DP="Lobby OpenOffice Restaurant Storage MeetingRoom1 MeetingRoom2 Office1 Office2 ToiletsOpenOffice Workshop ToiletsWorkshop" subdemarcations="Working" superdemarcations="Managing" name="ManagingPeople" constrainedBy="PE3 PE5"/>
+    <demarcations DP="Storage" subdemarcations="Working" superdemarcations="Managing" name="ManagingStock" constrainedBy="PE4 PE6"/>
+    <demarcations subdemarcations="ManagingFinances ManagingPeople ManagingStock" name="Managing" constrainedBy="PE7"/>
+    <demarcations DP="Restaurant" name="TakingABreak" constrainedBy="PE11"/>
+    <permissions PD="Working ManagingPeople Visiting" name="Lobby" PO="LobbyZone"/>
+    <permissions PD="Designing ManagingPeople Guarding Cleaning Visiting" name="Workshop" PO="WorkshopZone"/>
+    <permissions PD="Working ManagingPeople" name="OpenOffice" PO="OpenOfficeZone"/>
+    <permissions PD="Working ManagingPeople TakingABreak" name="Restaurant" PO="RestaurantZone"/>
+    <permissions PD="Designing ManagingPeople ManagingStock Guarding Cleaning" name="Storage" PO="StorageZone"/>
+    <permissions PD="Working ManagingPeople" name="MeetingRoom1" PO="MeetingRoom1Zone"/>
+    <permissions PD="Working ManagingPeople" name="MeetingRoom2" PO="MeetingRoom2Zone"/>
+    <permissions PD="ManagingPeople Guarding Cleaning" name="Office1" PO="Office1Zone"/>
+    <permissions PD="ManagingPeople Guarding Cleaning" name="Office2" PO="Office2Zone"/>
+    <permissions PD="ManagingFinances" name="Vault" PO="VaultZone"/>
+    <permissions PD="Designing ManagingPeople Guarding Cleaning Visiting" name="ToiletsWorkshop" PO="ToiletsWorkshopZone"/>
+    <permissions PD="Working ManagingPeople" name="ToiletsOpenOffice" PO="ToiletsOpenOfficeZone"/>
+    <temporalGrantRules name="PE1" priority="3" isGrant="true" role="Employee" demarcation="Working" temporalContext="WorkingHours"/>
+    <temporalGrantRules name="PE2" priority="3" isGrant="true" role="Designer" demarcation="Designing" temporalContext="WorkingHours"/>
+    <temporalGrantRules name="PE3" priority="3" isGrant="true" role="HeadDesigner" demarcation="ManagingPeople" temporalContext="WorkingHours"/>
+    <temporalGrantRules name="PE4" priority="3" isGrant="true" role="HeadDesigner" demarcation="ManagingStock" temporalContext="WorkingHours"/>
+    <temporalGrantRules name="PE5" priority="3" isGrant="true" role="OperationsManager" demarcation="ManagingPeople" temporalContext="WorkingHours"/>
+    <temporalGrantRules name="PE6" priority="3" isGrant="true" role="OperationsManager" demarcation="ManagingStock" temporalContext="WorkingHours"/>
+    <temporalGrantRules name="PE7" priority="3" isGrant="true" role="Director" demarcation="Managing" temporalContext="WorkingHours"/>
+    <temporalGrantRules name="PE8" priority="3" isGrant="true" role="Guard" demarcation="Guarding" temporalContext="GuardShifts"/>
+    <temporalGrantRules name="PE9" priority="3" isGrant="true" role="Cleaner" demarcation="Cleaning" temporalContext="CleaningShifts"/>
+    <temporalGrantRules name="PE10" priority="3" isGrant="true" role="Visitor" demarcation="Visiting" temporalContext="VisitingHours"/>
+    <temporalGrantRules name="PE11" priority="3" isGrant="true" role="Visitor" demarcation="TakingABreak" temporalContext="LunchBreaks"/>
+  </authorizationPolicy>
+  <contextContainer name="DummyContextContainer">
+    <temporalContexts name="Always" authorizationConstraints="ToiletBreak1 ToiletBreak2"/>
+    <temporalContexts name="GuardShifts" temporalGrantRules="PE8">
+      <instances end="449" validDay="Monday" name="GuardShifts-Monday-1"/>
+      <instances start="1170" end="1439" validDay="Monday" name="GuardShifts-Monday-2"/>
+      <instances end="449" validDay="Tuesday" name="GuardShifts-Tuesday-1"/>
+      <instances start="1170" end="1439" validDay="Tuesday" name="GuardShifts-Tuesday-2"/>
+      <instances end="449" validDay="Wednesday" name="GuardShifts-Wednesday-1"/>
+      <instances start="1170" end="1439" validDay="Wednesday" name="GuardShifts-Wednesday-2"/>
+      <instances end="449" validDay="Thursday" name="GuardShifts-Thursday-1"/>
+      <instances start="1170" end="1439" validDay="Thursday" name="GuardShifts-Thursday-2"/>
+      <instances end="449" validDay="Friday" name="GuardShifts-Friday-1"/>
+      <instances start="1170" end="1439" validDay="Friday" name="GuardShifts-Friday-2"/>
+      <instances end="449" validDay="Saturday" name="GuardShifts-Saturday-1"/>
+      <instances start="1170" end="1439" validDay="Saturday" name="GuardShifts-Saturday-2"/>
+      <instances end="449" validDay="Sunday" name="GuardShifts-Sunday-1"/>
+      <instances start="1170" end="1439" validDay="Sunday" name="GuardShifts-Sunday-2"/>
+    </temporalContexts>
+    <temporalContexts name="WorkingHours" temporalGrantRules="PE1 PE2 PE3 PE4 PE5 PE6 PE7">
+      <instances start="480" end="1019" validDay="Monday" name="WorkingHours-Monday-1"/>
+      <instances start="480" end="1019" validDay="Tuesday" name="WorkingHours-Tuesday-1"/>
+      <instances start="480" end="1019" validDay="Wednesday" name="WorkingHours-Wednesday-1"/>
+      <instances start="480" end="1019" validDay="Thursday" name="WorkingHours-Thursday-1"/>
+      <instances start="480" end="1019" validDay="Friday" name="WorkingHours-Friday-1"/>
+    </temporalContexts>
+    <temporalContexts name="VisitingHours" temporalGrantRules="PE10">
+      <instances start="600" end="959" validDay="Monday" name="VisitingHours-Monday-1"/>
+      <instances start="600" end="959" validDay="Tuesday" name="VisitingHours-Tuesday-1"/>
+      <instances start="600" end="959" validDay="Wednesday" name="VisitingHours-Wednesday-1"/>
+      <instances start="600" end="959" validDay="Thursday" name="VisitingHours-Thursday-1"/>
+      <instances start="600" end="959" validDay="Friday" name="VisitingHours-Friday-1"/>
+    </temporalContexts>
+    <temporalContexts name="LunchBreaks" temporalGrantRules="PE11">
+      <instances start="720" end="779" validDay="Monday" name="LunchBreaks-Monday-1"/>
+      <instances start="720" end="779" validDay="Tuesday" name="LunchBreaks-Tuesday-1"/>
+      <instances start="720" end="779" validDay="Wednesday" name="LunchBreaks-Wednesday-1"/>
+      <instances start="720" end="779" validDay="Thursday" name="LunchBreaks-Thursday-1"/>
+      <instances start="720" end="779" validDay="Friday" name="LunchBreaks-Friday-1"/>
+    </temporalContexts>
+    <temporalContexts name="Overtime">
+      <instances start="1020" end="1169" validDay="Monday" name="Overtime-Monday-1"/>
+      <instances start="1020" end="1169" validDay="Tuesday" name="Overtime-Tuesday-1"/>
+      <instances start="1020" end="1169" validDay="Wednesday" name="Overtime-Wednesday-1"/>
+      <instances start="1020" end="1169" validDay="Thursday" name="Overtime-Thursday-1"/>
+      <instances start="1020" end="1169" validDay="Friday" name="Overtime-Friday-1"/>
+    </temporalContexts>
+    <temporalContexts name="CleaningShifts" temporalGrantRules="PE9">
+      <instances start="1170" end="1260" validDay="Tuesday" name="CleaningShifts-Tuesday-1"/>
+      <instances start="1170" end="1260" validDay="Friday" name="CleaningShifts-Friday-1"/>
+    </temporalContexts>
+    <temporalContexts name="HolidayWorkshops">
+      <instances start="480" end="1019" validDay="5_December" name="HolidayWorkshops-5_December-1"/>
+      <instances start="480" end="1019" validDay="25_December" name="HolidayWorkshops-25_December-1"/>
+    </temporalContexts>
+    <temporalContexts name="FamilyDay">
+      <instances start="480" end="1019" validDay="Saturday_10_April_2021" name="FamilyDay-Saturday_10_April_2021-1"/>
+    </temporalContexts>
+    <temporalContexts name="FirstMondayOfJanuary">
+      <instances start="480" end="1019" validDay="Monday_1_January" name="FirstMondayOfJanuary-Monday_1_January-1"/>
+      <instances start="480" end="1019" validDay="Monday_2_January" name="FirstMondayOfJanuary-Monday_2_January-1"/>
+      <instances start="480" end="1019" validDay="Monday_3_January" name="FirstMondayOfJanuary-Monday_3_January-1"/>
+      <instances start="480" end="1019" validDay="Monday_4_January" name="FirstMondayOfJanuary-Monday_4_January-1"/>
+      <instances start="480" end="1019" validDay="Monday_5_January" name="FirstMondayOfJanuary-Monday_5_January-1"/>
+      <instances start="480" end="1019" validDay="Monday_6_January" name="FirstMondayOfJanuary-Monday_6_January-1"/>
+      <instances start="480" end="1019" validDay="Monday_7_January" name="FirstMondayOfJanuary-Monday_7_January-1"/>
+    </temporalContexts>
+    <validDays xsi:type="grrbac:ValidDayOfWeek" name="Monday" timeRanges="GuardShifts-Monday-1 GuardShifts-Monday-2 WorkingHours-Monday-1 VisitingHours-Monday-1 Overtime-Monday-1 LunchBreaks-Monday-1" validDayOfWeekMonth="Monday_1_January Monday_2_January Monday_3_January Monday_4_January Monday_5_January Monday_6_January Monday_7_January"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeek" name="Tuesday" timeRanges="GuardShifts-Tuesday-1 GuardShifts-Tuesday-2 WorkingHours-Tuesday-1 VisitingHours-Tuesday-1 Overtime-Tuesday-1 LunchBreaks-Tuesday-1 CleaningShifts-Tuesday-1"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeek" name="Wednesday" timeRanges="GuardShifts-Wednesday-1 GuardShifts-Wednesday-2 WorkingHours-Wednesday-1 VisitingHours-Wednesday-1 Overtime-Wednesday-1 LunchBreaks-Wednesday-1"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeek" name="Thursday" timeRanges="GuardShifts-Thursday-1 GuardShifts-Thursday-2 WorkingHours-Thursday-1 VisitingHours-Thursday-1 Overtime-Thursday-1 LunchBreaks-Thursday-1"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeek" name="Friday" timeRanges="GuardShifts-Friday-1 GuardShifts-Friday-2 WorkingHours-Friday-1 VisitingHours-Friday-1 Overtime-Friday-1 LunchBreaks-Friday-1 CleaningShifts-Friday-1"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeek" name="Saturday" timeRanges="GuardShifts-Saturday-1 GuardShifts-Saturday-2" validDayOfWeekMonth="Saturday_10_April"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeek" name="Sunday" timeRanges="GuardShifts-Sunday-1 GuardShifts-Sunday-2"/>
+    <validDays xsi:type="grrbac:ValidDayOfMonth" name="5_December" timeRanges="HolidayWorkshops-5_December-1"/>
+    <validDays xsi:type="grrbac:ValidDayOfMonth" name="25_December" timeRanges="HolidayWorkshops-25_December-1"/>
+    <validDays xsi:type="grrbac:ValidDayOfMonth" name="10_April" validDaysOfWeekMonth="Saturday_10_April"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeekMonth" name="Saturday_10_April" validDayOfWeek="Saturday" validDayOfMonth="10_April" validDayOfYear="Saturday_10_April_2021"/>
+    <validDays xsi:type="grrbac:ValidDayOfYear" name="Saturday_10_April_2021" timeRanges="FamilyDay-Saturday_10_April_2021-1" validDayOfWeekMonth="Saturday_10_April"/>
+    <validDays xsi:type="grrbac:ValidDayOfMonth" name="1_January" validDaysOfWeekMonth="Monday_1_January"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeekMonth" name="Monday_1_January" timeRanges="FirstMondayOfJanuary-Monday_1_January-1" validDayOfWeek="Monday" validDayOfMonth="1_January"/>
+    <validDays xsi:type="grrbac:ValidDayOfMonth" name="2_January" validDaysOfWeekMonth="Monday_2_January"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeekMonth" name="Monday_2_January" timeRanges="FirstMondayOfJanuary-Monday_2_January-1" validDayOfWeek="Monday" validDayOfMonth="2_January"/>
+    <validDays xsi:type="grrbac:ValidDayOfMonth" name="3_January" validDaysOfWeekMonth="Monday_3_January"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeekMonth" name="Monday_3_January" timeRanges="FirstMondayOfJanuary-Monday_3_January-1" validDayOfWeek="Monday" validDayOfMonth="3_January"/>
+    <validDays xsi:type="grrbac:ValidDayOfMonth" name="4_January" validDaysOfWeekMonth="Monday_4_January"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeekMonth" name="Monday_4_January" timeRanges="FirstMondayOfJanuary-Monday_4_January-1" validDayOfWeek="Monday" validDayOfMonth="4_January"/>
+    <validDays xsi:type="grrbac:ValidDayOfMonth" name="5_January" validDaysOfWeekMonth="Monday_5_January"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeekMonth" name="Monday_5_January" timeRanges="FirstMondayOfJanuary-Monday_5_January-1" validDayOfWeek="Monday" validDayOfMonth="5_January"/>
+    <validDays xsi:type="grrbac:ValidDayOfMonth" name="6_January" validDaysOfWeekMonth="Monday_6_January"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeekMonth" name="Monday_6_January" timeRanges="FirstMondayOfJanuary-Monday_6_January-1" validDayOfWeek="Monday" validDayOfMonth="6_January"/>
+    <validDays xsi:type="grrbac:ValidDayOfMonth" name="7_January" validDaysOfWeekMonth="Monday_7_January"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeekMonth" name="Monday_7_January" timeRanges="FirstMondayOfJanuary-Monday_7_January-1" validDayOfWeek="Monday" validDayOfMonth="7_January"/>
+  </contextContainer>
+  <authenticationPolicy name="DummyAuthenticationPolicy"/>
+  <topology name="DummyTopology">
+    <securityZones name="LobbyZone" OP="Lobby" public="true" reachable="WorkshopZone OpenOfficeZone"/>
+    <securityZones name="ToiletsWorkshopZone" OP="ToiletsWorkshop" reachable="WorkshopZone"/>
+    <securityZones name="WorkshopZone" OP="Workshop" reachable="LobbyZone ToiletsWorkshopZone StorageZone"/>
+    <securityZones name="StorageZone" OP="Storage" reachable="WorkshopZone"/>
+    <securityZones name="OpenOfficeZone" OP="OpenOffice" reachable="LobbyZone VaultZone MeetingRoom1Zone MeetingRoom2Zone Office1Zone Office2Zone RestaurantZone ToiletsOpenOfficeZone"/>
+    <securityZones name="ToiletsOpenOfficeZone" OP="ToiletsOpenOffice" reachable="OpenOfficeZone"/>
+    <securityZones name="VaultZone" OP="Vault" reachable="OpenOfficeZone"/>
+    <securityZones name="Office1Zone" OP="Office1" reachable="OpenOfficeZone"/>
+    <securityZones name="Office2Zone" OP="Office2" reachable="OpenOfficeZone"/>
+    <securityZones name="MeetingRoom1Zone" OP="MeetingRoom1" reachable="OpenOfficeZone"/>
+    <securityZones name="MeetingRoom2Zone" OP="MeetingRoom2" reachable="OpenOfficeZone"/>
+    <securityZones name="RestaurantZone" OP="Restaurant" reachable="OpenOfficeZone"/>
+  </topology>
+</grrbac:SiteAccessControlSystem>

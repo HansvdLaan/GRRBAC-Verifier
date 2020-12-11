@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trbac:Policy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:trbac="https://vanderhighway.com/trbac/2020">
+  <schedule name="TestSchedule">
+    <dayschedules xsi:type="trbac:WeekdaySchedule" name="Monday" ranges="//@schedule/@rangegroups.0/@ranges.0 //@schedule/@rangegroups.0/@ranges.1"/>
+    <dayschedules xsi:type="trbac:WeekdaySchedule" name="Tuesday" ranges="//@schedule/@rangegroups.0/@ranges.2 //@schedule/@rangegroups.0/@ranges.3"/>
+    <dayschedules xsi:type="trbac:YeardaySchedule" name="1-1" ranges="//@schedule/@rangegroups.1/@ranges.0 //@schedule/@rangegroups.1/@ranges.1"/>
+    <dayschedules xsi:type="trbac:YeardaySchedule" name="2-1" ranges="//@schedule/@rangegroups.1/@ranges.2 //@schedule/@rangegroups.1/@ranges.3"/>
+    <rangegroups name="TestWeekdayRange">
+      <ranges endtime="30" dayschedule="//@schedule/@dayschedules.0" name="Monday-[0,30]"/>
+      <ranges starttime="31" endtime="60" dayschedule="//@schedule/@dayschedules.0" name="Monday-[31,60]"/>
+      <ranges endtime="30" dayschedule="//@schedule/@dayschedules.1" name="Tuesday-[0,30]"/>
+      <ranges starttime="31" endtime="60" dayschedule="//@schedule/@dayschedules.1" name="Tuesday-[31,60]"/>
+    </rangegroups>
+    <rangegroups name="TestYeardayRange">
+      <ranges endtime="40" dayschedule="//@schedule/@dayschedules.2" name="1J[0-40]"/>
+      <ranges starttime="41" endtime="60" dayschedule="//@schedule/@dayschedules.2" name="1J[41-60]"/>
+      <ranges endtime="40" dayschedule="//@schedule/@dayschedules.3" name="2J[0-40]"/>
+      <ranges starttime="41" endtime="60" dayschedule="//@schedule/@dayschedules.3" name="2J[41-60]"/>
+    </rangegroups>
+  </schedule>
+</trbac:Policy>

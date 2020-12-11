@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+import subprocess
+import os.path
+import sys
+import shutil
+import time
+
+subprocess.run(["chmod","+x","./runtsc"])
+
+print("Started Evaluator.")
+evaluator_process = subprocess.Popen(["java","-XX:-UsePerfData", "-jar", "../Evaluator.jar", "./data/model.trbac", "./data/tsc.json", "./tsc_counter.json"])
+pid = evaluator_process.pid
+print("PID:" + str(pid))
+
+time.sleep(int(sys.argv[1]))
+
+subprocess.Popen(["sudo","../criu-ns", "dump", "-t", str(pid), "-o", "dump.log", "--shell-job"])
+time.sleep(20)
+
+print("Dumped process. ")
+subprocess.run(["mv","./data/tsc_counter.json", "./"])

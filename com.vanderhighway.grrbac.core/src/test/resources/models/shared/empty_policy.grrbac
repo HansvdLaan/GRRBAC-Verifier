@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<grrbac:SiteAccessControlSystem xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:grrbac="https://vanderhighway.com/grrbac/2020" name="DummySecurityPolicy">
+  <authorizationPolicy name="DummyAuthorizationPolicy"/>
+  <contextContainer name="DummyContextContainer">
+    <temporalContexts name="Always"/>
+  </contextContainer>
+  <authenticationPolicy name="DummyAuthenticationPolicy"/>
+  <topology name="DummyTopology"/>
+</grrbac:SiteAccessControlSystem>

@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+
+import subprocess
+import os.path
+import sys
+import shutil
+
+counter = 0;
+if os.path.exists("./restore"):
+	shutil.rmtree("./restore")
+
+os.makedirs("./restore")
+
+while os.path.exists(sys.argv[1]):
+  subprocess.run(["../criu-ns","restore","-o",
+  "./restore/restore" + str(counter) + ".log", '--shell-job'])
+  counter +=1
+print("Done!")

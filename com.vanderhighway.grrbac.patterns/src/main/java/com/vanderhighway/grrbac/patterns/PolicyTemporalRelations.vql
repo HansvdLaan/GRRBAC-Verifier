@@ -1,0 +1,178 @@
+//*******************************************************************************
+// * Policy Queries
+// *******************************************************************************
+
+package com.vanderhighway.grrbac.patterns
+
+import "https://vanderhighway.com/grrbac/2020"
+import "http://www.eclipse.org/emf/2002/Ecore"
+import java ^com.vanderhighway.grrbac.aggregators.distinct
+import java ^com.vanderhighway.grrbac.aggregators.Scenario
+
+// Used to detect newly added temporal context instances
+pattern TimeRangeP(validDay: ValidDay, context: TemporalContext, instance: TimeRange, out starttime: java Integer, out endtime: java Integer) {
+	TemporalContext(context);
+	TemporalContext.instances(context,instance);
+	ValidDay.timeRanges(validDay, instance);
+	TimeRange.start(instance,starttime);
+	TimeRange.end(instance,endtime);
+}
+
+// Used to detect newly created day of the week time
+pattern DayOfWeekInstanceP(validDay: ValidDayOfWeek, instance: ValidDayTimeRange) {
+	ValidDay.instances(validDay, instance);
+}
+
+// Used to detect newly created day of the week time
+pattern DayOfMonthInstanceP(validDay: ValidDayOfMonth, instance: ValidDayTimeRange) {
+	ValidDay.instances(validDay, instance);
+}
+
+// Used to detect newly created day of the week time
+pattern DayOfWeekMonthInstanceP(validDay: ValidDayOfWeekMonth, instance: ValidDayTimeRange) {
+	ValidDay.instances(validDay, instance);
+}
+
+// Used to detect newly created day of the week  month time ranges
+pattern ValidDayTimeRangeP(validDay: ValidDay, instance: ValidDayTimeRange, out starttime: java Integer, out endtime: java Integer) {
+	ValidDay.instances(validDay, instance);
+	TimeRange.start(instance,starttime);
+	TimeRange.end(instance,endtime);
+}
+
+pattern DayOfWeekAndMonthCombinedScheduleInstance(validDayOfWeek: ValidDayOfWeek, validDayOfMonth: ValidDayOfMonth,
+	validDayOfWeekAndMonth: ValidDayOfWeekMonth, wstr: ValidDayTimeRange,  mstr: ValidDayTimeRange,
+	out starttime: java Integer, out endtime: java Integer) {
+	ValidDayOfWeekMonth.validDayOfWeek(validDayOfWeekAndMonth, validDayOfWeek);
+	ValidDayOfWeekMonth.validDayOfMonth(validDayOfWeekAndMonth, validDayOfMonth);
+	ValidDayOfWeek.instances(validDayOfWeek, wstr);
+	ValidDayOfMonth.instances(validDayOfMonth, mstr);
+	ValidDayTimeRange.start(wstr, wstr_start);
+	ValidDayTimeRange.start(mstr, mstr_start);
+	ValidDayTimeRange.end(wstr, wstr_end);
+	ValidDayTimeRange.end(mstr, mstr_end);
+
+	check( (wstr_start <= mstr_start && mstr_start <= wstr_end) ||  (mstr_start <= wstr_start && wstr_start <= mstr_end));
+
+	starttime == eval(Math.max(wstr_start, mstr_start));
+	endtime == eval(Math.min(wstr_end, mstr_end));
+}
+
+pattern ValidDayOfWeekAndMonthAllCombinedInstance(validDayOfWeek: ValidDayOfWeek, validDayOfMonth: ValidDayOfMonth,
+	validDayOfWeekAndMonth: ValidDayOfWeekMonth, wstr: ValidDayTimeRange,  mstr: ValidDayTimeRange, wmstr: ValidDayTimeRange,
+	out starttime: java Integer, out endtime: java Integer) {
+
+	find DayOfWeekAndMonthCombinedScheduleInstance(validDayOfWeek, validDayOfMonth, validDayOfWeekAndMonth, wstr, mstr, wmc_start, wmc_end);
+	ValidDayOfWeekMonth.instances(validDayOfWeekAndMonth, wmstr);
+
+	ValidDayTimeRange.start(wmstr, wmstr_start);
+	ValidDayTimeRange.end(wmstr, wmstr_end);
+
+	check( (wmstr_start <= wmc_start && wmc_start <= wmstr_end) ||  (wmc_start <= wmstr_start && wmstr_start <= wmc_end));
+
+	starttime == eval(Math.max(wmstr_start, wmc_start));
+	endtime == eval(Math.min(wmstr_end, wmc_end));
+}
+
+
+pattern ValidDayOfYearAllCombinedInstance(in validDayOfYear: ValidDayOfYear, in wstr: ValidDayTimeRange,
+	in mstr: ValidDayTimeRange, in wmstr: ValidDayTimeRange, in ystr: ValidDayTimeRange,
+	out starttime: java Integer, out endtime: java Integer
+) {
+	ValidDayOfYear.validDayOfWeekMonth(validDayOfYear, validDayOfWeekAndMonth);
+	ValidDayOfWeekMonth.validDayOfWeek(validDayOfWeekAndMonth, validDayOfWeek);
+	ValidDayOfWeekMonth.validDayOfMonth(validDayOfWeekAndMonth, validDayOfMonth);
+
+	find ValidDayOfWeekAndMonthAllCombinedInstance(validDayOfWeek, validDayOfMonth, validDayOfWeekAndMonth, wstr, mstr, wmstr, wmac_start, wmac_end);
+
+	ValidDayOfYear.instances(validDayOfYear, ystr);
+	ValidDayTimeRange.start(ystr, ystr_start);
+	ValidDayTimeRange.end(ystr, ystr_end);
+
+	check( (wmac_start <= ystr_start && ystr_start <= wmac_end) ||  (ystr_start <= wmac_start && wmac_start <= ystr_end) );
+
+	starttime == eval(Math.max(wmac_start, ystr_start));
+	endtime == eval(Math.min(wmac_end, ystr_end));
+}
+
+pattern TemporalContext_DateScheduleTimeRangeInstance(context: TemporalContext, in validDay: ValidDay,
+	out starttime: java Integer, out endtime: java Integer)
+{
+	find ValidDayOfYearAllCombinedInstance(validDay, wstr, _, _, _, starttime, endtime);
+	ValidDayTimeRange.temporalContextTimeRanges(wstr, tr);
+	TemporalContext.instances(context, tr);
+} or {
+	find ValidDayOfYearAllCombinedInstance(validDay, _, mstr, _, _, starttime, endtime);
+	ValidDayTimeRange.temporalContextTimeRanges(mstr, tr);
+	TemporalContext.instances(context, tr);
+} or {
+	find ValidDayOfYearAllCombinedInstance(validDay, _, _, wmstr, _, starttime, endtime);
+	ValidDayTimeRange.temporalContextTimeRanges(wmstr, tr);
+	TemporalContext.instances(context, tr);
+} or {
+	find ValidDayOfYearAllCombinedInstance(validDay, _, _, _, ystr, starttime, endtime);
+	ValidDayTimeRange.temporalContextTimeRanges(ystr, tr);
+	TemporalContext.instances(context, tr);
+}
+
+pattern TemporalContext_ValidDayOfWeekAndMonthAllCombinedInstance(context: TemporalContext, in validDay: ValidDay,
+	out starttime: java Integer, out endtime: java Integer)
+{
+    find ValidDayOfWeekAndMonthAllCombinedInstance(_, _, validDay, wstr, _, _, starttime, endtime);
+	ValidDayTimeRange.temporalContextTimeRanges(wstr, tr);
+	TemporalContext.instances(context, tr);
+} or {
+	find ValidDayOfWeekAndMonthAllCombinedInstance(_, _, validDay, _, mstr, _, starttime, endtime);
+	ValidDayTimeRange.temporalContextTimeRanges(mstr, tr);
+	TemporalContext.instances(context, tr);
+} or {
+	find ValidDayOfWeekAndMonthAllCombinedInstance(_, _, validDay, _, _, wmstr, starttime, endtime);
+	ValidDayTimeRange.temporalContextTimeRanges(wmstr, tr);
+	TemporalContext.instances(context, tr);
+}
+
+pattern ValidDayOfYearAllCombinedInstance_TemporalContext(in validDay: ValidDay, out starttime: java Integer,
+	out endtime: java Integer, context: TemporalContext) {
+		find TemporalContext_DateScheduleTimeRangeInstance(context, validDay,starttime,endtime);
+}
+
+pattern ValidDayOfWeekAndMonthAllCombinedInstance_TemporalContext(in validDay: ValidDay, out starttime: java Integer,
+	out endtime: java Integer, context: TemporalContext) {
+		find TemporalContext_ValidDayOfWeekAndMonthAllCombinedInstance(context, validDay,starttime,endtime);
+}
+
+pattern ValidDayOfYearAllCombinedInstance_To_Scenario(in validDay: ValidDay, out starttime: java Integer,
+	out endtime: java Integer, scenario: java Scenario) {
+	ValidDayOfYear(validDay);
+	find ValidDayOfYearAllCombinedInstance(validDay, _, _, _, _, starttime, endtime);
+	scenario == distinct find ValidDayOfYearAllCombinedInstance_TemporalContext(validDay, starttime, endtime, #context);
+}
+pattern ValidDayOfWeekAndMonthAllCombinedInstance_To_Scenario(in validDay: ValidDay, out starttime: java Integer,
+	out endtime: java Integer, scenario: java Scenario) {
+	ValidDayOfWeekMonth(validDay);
+	find ValidDayOfWeekAndMonthAllCombinedInstance(_, _, validDay, _, _, _, starttime, endtime);
+	scenario == distinct find ValidDayOfWeekAndMonthAllCombinedInstance_TemporalContext(validDay, starttime, endtime, #context);
+}
+
+pattern Scenarios(out scenario: java Scenario) {
+	find ValidDayOfYearAllCombinedInstance_To_Scenario(_, _, _, scenario);
+} or {
+	find ValidDayOfWeekAndMonthAllCombinedInstance_To_Scenario(_, _, _, scenario);
+}
+
+pattern ScenarioTemporalContext(in scenario: java Scenario, out context: TemporalContext) {
+	find ValidDayOfYearAllCombinedInstance_To_Scenario(ys, start, end, scenario);
+	find ValidDayOfYearAllCombinedInstance_TemporalContext(ys, start, end, context);
+} or {
+	find ValidDayOfWeekAndMonthAllCombinedInstance_To_Scenario(ys, start, end, scenario);
+	find ValidDayOfWeekAndMonthAllCombinedInstance_TemporalContext(ys, start, end, context);
+}
+
+//pattern Scenarios(scenario: java Scenario) {
+//	java Scenario(scenario);
+//}
+
+//pattern ScenarioTemporalContext(scenario: java Scenario, context: TemporalContext) {
+//	java Scenario.temporalContexts(scenario, context);
+//}
+

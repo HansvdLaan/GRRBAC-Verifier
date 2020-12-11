@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/com.vanderhighway.grrbac.model/src/main/java"
+    modelPluginID="com.vanderhighway.grrbac.model" modelName="GRRBAC" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>grrbac.ecore</foreignModel>
+  <genPackages prefix="GRRBAC" basePackage="com.vanderhighway.grrbac.model" disposableProviderFactory="true"
+      interfacePackageSuffix="model" metaDataPackageSuffix="model" classPackageSuffix="model.impl"
+      utilityPackageSuffix="model.util" providerPackageSuffix="model.provider" presentationPackageSuffix="model.presentation"
+      testsPackageSuffix="model.tests" fileExtensions="trbac" ecorePackage="grrbac.ecore#/">
+    <genClasses ecoreClass="grrbac.ecore#//User">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//User/UR"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//User/name"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//Role">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Role/RU"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Role/RD"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Role/juniors"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Role/seniors"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//Role/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Role/constrainedBy"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//Demarcation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Demarcation/DR"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Demarcation/DP"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Demarcation/subdemarcations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Demarcation/superdemarcations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//Demarcation/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Demarcation/constrainedBy"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//Permission">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Permission/PD"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//Permission/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Permission/PO"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//TimeRange">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//TimeRange/start"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//TimeRange/end"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//TimeRange/validDay"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//TimeRange/validDayTimeRanges"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//TimeRange/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="grrbac.ecore#//ValidDay">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//ValidDay/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//ValidDay/timeRanges"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference grrbac.ecore#//ValidDay/instances"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//ValidDayOfWeek">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//ValidDayOfWeek/validDayOfWeekMonth"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//ValidDayOfMonth">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//ValidDayOfMonth/validDaysOfWeekMonth"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//TemporalContext">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference grrbac.ecore#//TemporalContext/instances"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//TemporalContext/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//TemporalContext/temporalGrantRules"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//TemporalContext/authorizationConstraints"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//TemporalContext/temporalAuthenticationRules"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//TemporalContext/myScenarios"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//ValidDayTimeRange">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//ValidDayTimeRange/temporalContextTimeRanges"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//ValidDayTimeRange/next"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//ValidDayTimeRange/previous"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//ValidDayOfWeekMonth">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//ValidDayOfWeekMonth/validDayOfWeek"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//ValidDayOfWeekMonth/validDayOfMonth"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//ValidDayOfWeekMonth/validDayOfYear"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//TemporalGrantRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//TemporalGrantRule/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//TemporalGrantRule/priority"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//TemporalGrantRule/isGrant"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//TemporalGrantRule/role"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//TemporalGrantRule/demarcation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//TemporalGrantRule/temporalContext"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//SACSObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//SACSObject/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//SACSObject/OP"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//SiteAccessControlSystem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//SiteAccessControlSystem/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference grrbac.ecore#//SiteAccessControlSystem/authorizationConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference grrbac.ecore#//SiteAccessControlSystem/authorizationPolicy"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference grrbac.ecore#//SiteAccessControlSystem/contextContainer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference grrbac.ecore#//SiteAccessControlSystem/authenticationPolicy"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference grrbac.ecore#//SiteAccessControlSystem/topology"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//SecurityZone">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//SecurityZone/public"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//SecurityZone/reachable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//SecurityZone/constrainedBy"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="grrbac.ecore#//PolicyDependentAuthorizationConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//PolicyDependentAuthorizationConstraint/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//PolicyDependentAuthorizationConstraint/temporalContext"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//UnaryUserConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//UnaryUserConstraint/user"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//BinaryUserConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//BinaryUserConstraint/left"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//BinaryUserConstraint/right"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//UnaryRoleConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//UnaryRoleConstraint/role"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//BinaryRoleConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//BinaryRoleConstraint/left"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//BinaryRoleConstraint/right"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//UnaryDemarcationConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//UnaryDemarcationConstraint/demarcation"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//BinaryDemarcationConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//BinaryDemarcationConstraint/left"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//BinaryDemarcationConstraint/right"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//UnaryPermissionConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//UnaryPermissionConstraint/permission"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//BinaryPermissionConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//BinaryPermissionConstraint/left"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//BinaryPermissionConstraint/right"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//SoDURConstraint"/>
+    <genClasses ecoreClass="grrbac.ecore#//SoDUDConstraint"/>
+    <genClasses ecoreClass="grrbac.ecore#//SoDUPConstraint"/>
+    <genClasses ecoreClass="grrbac.ecore#//SoDRDConstraint"/>
+    <genClasses ecoreClass="grrbac.ecore#//SoDDPConstraint"/>
+    <genClasses ecoreClass="grrbac.ecore#//AuthorizationPolicy">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference grrbac.ecore#//AuthorizationPolicy/users"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference grrbac.ecore#//AuthorizationPolicy/roles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference grrbac.ecore#//AuthorizationPolicy/demarcations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference grrbac.ecore#//AuthorizationPolicy/permissions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//AuthorizationPolicy/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference grrbac.ecore#//AuthorizationPolicy/temporalGrantRules"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//PrerequisiteURConstraint"/>
+    <genClasses ecoreClass="grrbac.ecore#//PrerequisiteUDConstraint"/>
+    <genClasses ecoreClass="grrbac.ecore#//PrerequisiteUPConstraint"/>
+    <genClasses ecoreClass="grrbac.ecore#//PrerequisiteRDConstraint"/>
+    <genClasses ecoreClass="grrbac.ecore#//PrerequisiteRPConstraint"/>
+    <genClasses ecoreClass="grrbac.ecore#//PrerequisiteDPConstraint"/>
+    <genClasses ecoreClass="grrbac.ecore#//BoDURConstraint"/>
+    <genClasses ecoreClass="grrbac.ecore#//BoDUDConstraint"/>
+    <genClasses ecoreClass="grrbac.ecore#//BoDRDConstraint"/>
+    <genClasses ecoreClass="grrbac.ecore#//BoDUPConstraint"/>
+    <genClasses ecoreClass="grrbac.ecore#//BoDRPConstraint"/>
+    <genClasses ecoreClass="grrbac.ecore#//BoDDPConstraint"/>
+    <genClasses ecoreClass="grrbac.ecore#//CardinalityURConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//CardinalityURConstraint/bound"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//CardinalityUDConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//CardinalityUDConstraint/bound"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//CardinalityRDConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//CardinalityRDConstraint/bound"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//CardinalityUPConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//CardinalityUPConstraint/bound"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//CardinalityRPConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//CardinalityRPConstraint/bound"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//CardinalityDPConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//CardinalityDPConstraint/bound"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//ContextContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference grrbac.ecore#//ContextContainer/temporalContexts"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference grrbac.ecore#//ContextContainer/validDays"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//ContextContainer/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference grrbac.ecore#//ContextContainer/myScenarios"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//ValidDayOfYear">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//ValidDayOfYear/validDayOfWeekMonth"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//AuthenticationPolicy">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//AuthenticationPolicy/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference grrbac.ecore#//AuthenticationPolicy/temporalAuthenticationRules"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//TemporalAuthenticationRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//TemporalAuthenticationRule/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//TemporalAuthenticationRule/priority"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//TemporalAuthenticationRule/status"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//TemporalAuthenticationRule/temporalContext"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//TemporalAuthenticationRule/securityZone"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//MyScenario">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//MyScenario/temporalContexts"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//AccessControlSystemTopology">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//AccessControlSystemTopology/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference grrbac.ecore#//AccessControlSystemTopology/securityZones"/>
+    </genClasses>
+    <genClasses ecoreClass="grrbac.ecore#//SoDRPConstraint"/>
+  </genPackages>
+</genmodel:GenModel>

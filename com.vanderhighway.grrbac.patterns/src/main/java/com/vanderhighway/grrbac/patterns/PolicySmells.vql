@@ -1,0 +1,63 @@
+package com.vanderhighway.grrbac.patterns
+
+import "https://vanderhighway.com/grrbac/2020"
+import "http://www.eclipse.org/emf/2002/Ecore"
+import java ^com.vanderhighway.grrbac.aggregators.distinct
+import java ^com.vanderhighway.grrbac.aggregators.Scenario
+
+pattern UnusedRole(role: Role) {
+	Role.name(role,_); //The role should have a name!
+	neg Role.RU(role, _);
+	neg Role.seniors(role, _);
+}
+
+pattern UnusedDemarcation(demarcation: Demarcation) {
+	Demarcation.name(demarcation,_); //The demarcation should have a name!
+	neg TemporalGrantRule.demarcation(_, demarcation);
+	neg Demarcation.superdemarcations(demarcation, _);
+}
+
+pattern UnusedPermission(permission: Permission) {
+	Permission.name(permission,_); //The permission should have a name!
+	neg Permission.PD(permission, _);
+}
+
+pattern ZombieDemarcation(demarcation: Demarcation) {
+	TemporalGrantRule.demarcation(_, demarcation);
+	neg find RSD(_,_,demarcation);
+	neg Demarcation.superdemarcations(demarcation, _);
+} 
+
+pattern ZombiePermission(permission: Permission) {	
+	neg find UnusedPermission(permission);
+	neg find RSP(_,_,permission);
+}
+
+pattern IgnoredRoleInheritance(user: User, roleJunior: Role, roleSenior: Role) {
+	User.UR(user, roleSenior);
+	Role.juniors+(roleSenior, roleJunior);
+	User.UR(user, roleJunior);
+}
+
+pattern IgnoredDemarcationInheritance(role: Role, scenario: java Scenario, subDemarcation: Demarcation, supDemarcation: Demarcation) {
+	find RSD(role, scenario, supDemarcation);
+	Demarcation.subdemarcations+(supDemarcation, subDemarcation);
+	find RSD(role, scenario, subDemarcation);
+}
+
+pattern GodUser(user: User) {
+	currentSPCount == count find USP(user, _, _);
+	permissionCount == count Permission(_);
+	scenarioCount == count find Scenarios(_);
+	maxSPCount == eval(permissionCount * scenarioCount);
+	check(currentSPCount == maxSPCount); 
+}
+
+pattern GodRole(role: Role) {
+	currentSPCount == count find RSP(role, _, _);
+	permissionCount == count Permission(_);
+	scenarioCount == count find Scenarios(_);
+	maxSPCount == eval(permissionCount * scenarioCount);
+	check(currentSPCount == maxSPCount); 
+}
+

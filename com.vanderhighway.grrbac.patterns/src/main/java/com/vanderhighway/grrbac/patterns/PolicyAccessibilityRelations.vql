@@ -1,0 +1,94 @@
+//*******************************************************************************
+// * Policy Queries
+// *******************************************************************************
+
+package com.vanderhighway.grrbac.patterns
+
+import "https://vanderhighway.com/grrbac/2020"
+import "http://www.eclipse.org/emf/2002/Ecore"
+import java ^com.vanderhighway.grrbac.aggregators.distinct
+import java ^com.vanderhighway.grrbac.aggregators.Scenario
+import java ^com.vanderhighway.grrbac.patterns.PolicyTemporalRelations
+import java ^com.vanderhighway.grrbac.patterns.PolicyAuthorizationRelations
+
+pattern StatusPriority(in scenario: java Scenario, in zone: SecurityZone, out status: java Integer, out priority: java Integer) {
+	find ScenarioTemporalContext(scenario,context);
+	TemporalContext.temporalAuthenticationRules(context, rule);
+	TemporalAuthenticationRule.status(rule, status);
+	SecurityZone.constrainedBy(zone, rule);
+	TemporalAuthenticationRule.priority(rule, priority);
+}
+pattern LockedPriority(in scenario: java Scenario, in zone: SecurityZone, out priority: java Integer) {
+	find StatusPriority(scenario, zone, 2, priority);
+} or {
+	find Scenarios(scenario);
+	SecurityZone(zone);
+	priority == -1;
+}
+
+pattern ProtectedPriority(in scenario: java Scenario, in zone: SecurityZone, out priority: java Integer) {
+	find StatusPriority(scenario, zone, 1, priority);
+} or {
+	find Scenarios(scenario);
+	SecurityZone(zone);
+	priority == -1;
+}
+
+pattern UnlockedPriority(in scenario: java Scenario, in zone: SecurityZone, out priority: java Integer) {
+	find StatusPriority(scenario, zone, 0, priority);
+} or {
+	find Scenarios(scenario);
+	SecurityZone(zone);
+	priority == -1;
+}
+
+pattern SecurityZoneAccessStatus(in scenario: java Scenario, in zone: SecurityZone, out status: java Integer) {
+	find Scenarios(scenario);
+	SecurityZone(zone);
+	maxLockedPriority == max find LockedPriority(scenario,zone, #p1);
+	maxProtectedPriority == max find ProtectedPriority(scenario,zone,#p2);
+	maxUnlockedPriority == max find UnlockedPriority(scenario,zone,#p3);
+	status == eval(MyQueryUtil.determineAuthenticationStatus(maxLockedPriority, maxProtectedPriority, maxUnlockedPriority));
+}
+
+pattern SecurityZoneLeavable(user: User, scenario: java Scenario, zone: SecurityZone) {
+	SecurityZone.public(zone, true);
+	User(user);
+	find Scenarios(scenario);
+} or {
+	SecurityZone.reachable(zone,next);
+	find SecurityZoneAccessible(user, scenario, next);
+	find SecurityZoneLeavable(user, scenario, next);
+}
+
+pattern SecurityZoneAccessible(user: User, scenario: java Scenario, zone: SecurityZone) {
+	SecurityZone.public(zone, true);
+	find SecurityZoneAccessStatus(scenario, zone, 0);
+	User(user);
+} or {
+	find USO(user, scenario, zone);
+	SecurityZone.public(zone, true);
+	find SecurityZoneAccessStatus(scenario, zone, 1);
+} or {
+	find SecurityZoneAccessible(user, scenario, prev);
+	find SecurityZoneAccessibleIntermediate1(scenario, prev, zone);
+} or {
+  	find SecurityZoneAccessible(user, scenario, prev);
+  	find SecurityZoneAccessibleIntermediate2(user, scenario, prev, zone);
+}
+ 
+pattern SecurityZoneAccessAllowed(scenario: java Scenario, zone: SecurityZone) {
+	find SecurityZoneAccessStatus(scenario, zone, status);
+	check(status == 1 || status == 0);
+}
+
+pattern SecurityZoneAccessibleIntermediate1(scenario: java Scenario, prev: SecurityZone, zone: SecurityZone) {
+	find SecurityZoneAccessStatus(scenario, zone, 0);
+	SecurityZone.reachable(prev,zone);
+}
+
+pattern SecurityZoneAccessibleIntermediate2(user: User, scenario: java Scenario, prev: SecurityZone, zone: SecurityZone) {
+	SecurityZone.reachable(prev,zone);
+	find SecurityZoneAccessStatus(scenario, zone, 1);
+	find USO(user, scenario, zone);
+}

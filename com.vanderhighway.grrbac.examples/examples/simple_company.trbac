@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ASCII"?>
+<grrbac:SiteAccessControlSystem xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:grrbac="https://vanderhighway.com/grrbac/2020" name="DummySecurityPolicy">
+  <authorizationPolicy name="DummyAuthorizationPolicy">
+    <users UR="Employee" name="User1"/>
+    <users UR="Employee Manager" name="User2"/>
+    <users name="User3"/>
+    <users name="User4"/>
+    <roles RU="User1 User2" name="Employee" constrainedBy="R1 R2 R3 R4 R7"/>
+    <roles RU="User2" name="Manager" constrainedBy="R5 R6"/>
+    <demarcations DP="OpenOffice BreakRoom" name="Office" constrainedBy="R1 R3 R5 R7"/>
+    <demarcations DP="BreakRoom Kitchen" name="Canteen" constrainedBy="R2 R4 R6"/>
+    <permissions PD="Office" name="OpenOffice" PO="ZoneOpenOffice"/>
+    <permissions PD="Office Canteen" name="BreakRoom" PO="ZoneBreakRoom"/>
+    <permissions PD="Canteen" name="Kitchen" PO="ZoneKitchen"/>
+    <temporalGrantRules name="R1" priority="3" isGrant="true" role="Employee" demarcation="Office" temporalContext="WorkingHours"/>
+    <temporalGrantRules name="R2" priority="3" isGrant="true" role="Employee" demarcation="Canteen" temporalContext="LunchBreaks"/>
+    <temporalGrantRules name="R3" priority="4" role="Employee" demarcation="Office" temporalContext="Holidays"/>
+    <temporalGrantRules name="R4" priority="4" role="Employee" demarcation="Canteen" temporalContext="Holidays"/>
+    <temporalGrantRules name="R5" priority="3" isGrant="true" role="Manager" demarcation="Office" temporalContext="WorkingHours"/>
+    <temporalGrantRules name="R6" priority="3" isGrant="true" role="Manager" demarcation="Canteen" temporalContext="LunchBreaks"/>
+    <temporalGrantRules name="R7" priority="4" role="Employee" demarcation="Office" temporalContext="Holidays"/>
+  </authorizationPolicy>
+  <contextContainer name="DummyContextContainer">
+    <temporalContexts name="Always" temporalAuthenticationRules="TAR1"/>
+    <temporalContexts name="WorkingHours" temporalGrantRules="R1 R5">
+      <instances start="480" end="1019" validDay="Monday" name="WorkingHours-Monday-1"/>
+      <instances start="480" end="1019" validDay="Tuesday" name="WorkingHours-Tuesday-1"/>
+      <instances start="480" end="1019" validDay="Wednesday" name="WorkingHours-Wednesday-1"/>
+      <instances start="480" end="1019" validDay="Thursday" name="WorkingHours-Thursday-1"/>
+      <instances start="480" end="1019" validDay="Friday" name="WorkingHours-Friday-1"/>
+    </temporalContexts>
+    <temporalContexts name="LunchBreaks" temporalGrantRules="R2 R6">
+      <instances start="480" end="1019" validDay="Monday" name="LunchBreaks-Monday-1"/>
+      <instances start="480" end="1019" validDay="Tuesday" name="LunchBreaks-Tuesday-1"/>
+      <instances start="480" end="1019" validDay="Wednesday" name="LunchBreaks-Wednesday-1"/>
+      <instances start="480" end="1019" validDay="Thursday" name="LunchBreaks-Thursday-1"/>
+      <instances start="480" end="1019" validDay="Friday" name="LunchBreaks-Friday-1"/>
+    </temporalContexts>
+    <temporalContexts name="Holidays" temporalGrantRules="R3 R4 R7">
+      <instances start="480" end="1019" validDay="25_December" name="Holidays-25_December-1"/>
+    </temporalContexts>
+    <validDays xsi:type="grrbac:ValidDayOfWeek" name="Monday" timeRanges="WorkingHours-Monday-1 LunchBreaks-Monday-1"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeek" name="Tuesday" timeRanges="WorkingHours-Tuesday-1 LunchBreaks-Tuesday-1"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeek" name="Wednesday" timeRanges="WorkingHours-Wednesday-1 LunchBreaks-Wednesday-1"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeek" name="Thursday" timeRanges="WorkingHours-Thursday-1 LunchBreaks-Thursday-1"/>
+    <validDays xsi:type="grrbac:ValidDayOfWeek" name="Friday" timeRanges="WorkingHours-Friday-1 LunchBreaks-Friday-1"/>
+    <validDays xsi:type="grrbac:ValidDayOfMonth" name="25_December" timeRanges="Holidays-25_December-1"/>
+  </contextContainer>
+  <authenticationPolicy name="DummyAuthenticationPolicy">
+    <temporalAuthenticationRules name="TAR1" priority="1" temporalContext="Always" securityZone="ZoneLobby"/>
+  </authenticationPolicy>
+  <topology name="DummyTopology">
+    <securityZones name="ZoneLobby" public="true" reachable="ZoneOpenOffice" constrainedBy="TAR1"/>
+    <securityZones name="ZoneOpenOffice" OP="OpenOffice" reachable="ZoneLobby ZoneBreakRoom"/>
+    <securityZones name="ZoneBreakRoom" OP="BreakRoom" reachable="ZoneOpenOffice ZoneKitchen"/>
+    <securityZones name="ZoneKitchen" OP="Kitchen" reachable="ZoneBreakRoom"/>
+  </topology>
+</grrbac:SiteAccessControlSystem>
