@@ -119,10 +119,7 @@ public class CLIUtil {
     // some show commands do not work well with delayUpdatePropagation. This is
     // interesting as no model modifications are being done in those commands...
     public static boolean shouldIgnoreDelayUpdatePropagation(String finalLine) {
-        if(finalLine.contains("show scenarios")) {
-            return true;
-        }
-        else if (finalLine.contains("show scenarioinstances")) {
+        if(finalLine.startsWith("show")) {
             return true;
         }
         return false;
