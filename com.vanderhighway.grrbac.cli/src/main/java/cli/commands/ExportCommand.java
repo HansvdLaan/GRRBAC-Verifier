@@ -62,4 +62,10 @@ public class ExportCommand implements Runnable {
         Exporter.exportAuthorizationPolicy( new File(fileName), CLIContainer.getInstance().getModifier());
     }
 
+    @CommandLine.Command(sortOptions = false, mixinStandardHelpOptions = true, subcommands = {CommandLine.HelpCommand.class},
+            description = "export authorization graph (.graphml)")
+    public void debug(@CommandLine.Option(names = {"-fileName"}, required = true) String fileName) throws ModelManipulationException, IOException {
+        Exporter.exportStaticScenarios( new File(fileName), CLIContainer.getInstance().getModifier());
+    }
+
 }

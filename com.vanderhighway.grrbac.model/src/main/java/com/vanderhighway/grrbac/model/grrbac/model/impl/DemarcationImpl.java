@@ -5,7 +5,6 @@ package com.vanderhighway.grrbac.model.grrbac.model.impl;
 import com.vanderhighway.grrbac.model.grrbac.model.Demarcation;
 import com.vanderhighway.grrbac.model.grrbac.model.GRRBACPackage;
 import com.vanderhighway.grrbac.model.grrbac.model.Permission;
-import com.vanderhighway.grrbac.model.grrbac.model.Role;
 import com.vanderhighway.grrbac.model.grrbac.model.TemporalGrantRule;
 
 import java.util.Collection;
@@ -32,7 +31,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.impl.DemarcationImpl#getDR <em>DR</em>}</li>
  *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.impl.DemarcationImpl#getDP <em>DP</em>}</li>
  *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.impl.DemarcationImpl#getSubdemarcations <em>Subdemarcations</em>}</li>
  *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.impl.DemarcationImpl#getSuperdemarcations <em>Superdemarcations</em>}</li>
@@ -43,16 +41,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class DemarcationImpl extends MinimalEObjectImpl.Container implements Demarcation {
-	/**
-	 * The cached value of the '{@link #getDR() <em>DR</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDR()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Role> dr;
-
 	/**
 	 * The cached value of the '{@link #getDP() <em>DP</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -130,19 +118,6 @@ public class DemarcationImpl extends MinimalEObjectImpl.Container implements Dem
 	@Override
 	protected EClass eStaticClass() {
 		return GRRBACPackage.Literals.DEMARCATION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Role> getDR() {
-		if (dr == null) {
-			dr = new EObjectWithInverseResolvingEList.ManyInverse<Role>(Role.class, this, GRRBACPackage.DEMARCATION__DR, GRRBACPackage.ROLE__RD);
-		}
-		return dr;
 	}
 
 	/**
@@ -229,8 +204,6 @@ public class DemarcationImpl extends MinimalEObjectImpl.Container implements Dem
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GRRBACPackage.DEMARCATION__DR:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDR()).basicAdd(otherEnd, msgs);
 			case GRRBACPackage.DEMARCATION__DP:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDP()).basicAdd(otherEnd, msgs);
 			case GRRBACPackage.DEMARCATION__SUBDEMARCATIONS:
@@ -251,8 +224,6 @@ public class DemarcationImpl extends MinimalEObjectImpl.Container implements Dem
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GRRBACPackage.DEMARCATION__DR:
-				return ((InternalEList<?>)getDR()).basicRemove(otherEnd, msgs);
 			case GRRBACPackage.DEMARCATION__DP:
 				return ((InternalEList<?>)getDP()).basicRemove(otherEnd, msgs);
 			case GRRBACPackage.DEMARCATION__SUBDEMARCATIONS:
@@ -273,8 +244,6 @@ public class DemarcationImpl extends MinimalEObjectImpl.Container implements Dem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GRRBACPackage.DEMARCATION__DR:
-				return getDR();
 			case GRRBACPackage.DEMARCATION__DP:
 				return getDP();
 			case GRRBACPackage.DEMARCATION__SUBDEMARCATIONS:
@@ -298,10 +267,6 @@ public class DemarcationImpl extends MinimalEObjectImpl.Container implements Dem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GRRBACPackage.DEMARCATION__DR:
-				getDR().clear();
-				getDR().addAll((Collection<? extends Role>)newValue);
-				return;
 			case GRRBACPackage.DEMARCATION__DP:
 				getDP().clear();
 				getDP().addAll((Collection<? extends Permission>)newValue);
@@ -333,9 +298,6 @@ public class DemarcationImpl extends MinimalEObjectImpl.Container implements Dem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GRRBACPackage.DEMARCATION__DR:
-				getDR().clear();
-				return;
 			case GRRBACPackage.DEMARCATION__DP:
 				getDP().clear();
 				return;
@@ -363,8 +325,6 @@ public class DemarcationImpl extends MinimalEObjectImpl.Container implements Dem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GRRBACPackage.DEMARCATION__DR:
-				return dr != null && !dr.isEmpty();
 			case GRRBACPackage.DEMARCATION__DP:
 				return dp != null && !dp.isEmpty();
 			case GRRBACPackage.DEMARCATION__SUBDEMARCATIONS:

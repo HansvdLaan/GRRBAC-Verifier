@@ -6,7 +6,6 @@ package com.vanderhighway.grrbac.patterns
 
 import "https://vanderhighway.com/grrbac/2020"
 import "http://www.eclipse.org/emf/2002/Ecore"
-import java ^com.vanderhighway.grrbac.aggregators.distinct
 import java ^com.vanderhighway.grrbac.aggregators.Scenario
 
 // ----- Utility Patterns -----
@@ -32,16 +31,12 @@ pattern RSP(in role: Role, scenario: java Scenario, permission:Permission) {
 }
 
 pattern RSD(in role: Role, scenario: java Scenario, demarcation: Demarcation) {
-	find Scenarios(scenario);
-	find connectedByTemporalGrantRule(role, demarcation);
 	find GrantPriority(scenario, role, demarcation, _);
 	find RevokePriority(scenario, role, demarcation, _);
 	maxGrantPriority == max find GrantPriority(scenario, role, demarcation, #p);
 	maxRevokePriority == max find RevokePriority(scenario, role, demarcation, #p2);
 	check(maxGrantPriority > maxRevokePriority);
 } or {
-	find Scenarios(scenario);
-	find connectedByTemporalGrantRule(role, demarcation);
 	find GrantPriority(scenario, role, demarcation, _);
 	neg find RevokePriority(scenario, role, demarcation, _);
 }
@@ -50,27 +45,31 @@ pattern RHSDH(in role: Role, scenario: java Scenario, demarcation: Demarcation) 
 	Role.juniors*(role, roleP);
 	find RSD(roleP, scenario, demarcationP);
 	Demarcation.subdemarcations*(demarcationP, demarcation);
-} 
+}
 
 pattern connectedByTemporalGrantRule(in role: Role, demarcation: Demarcation) {
 	TemporalGrantRule.role(rule, role);
 	TemporalGrantRule.demarcation(rule, demarcation);
 }
 
-pattern GrantPriority(in scenario: java Scenario, in role: Role, demarcation: Demarcation, out priority: java Integer) {
+pattern RulePriority(in scenario: java Scenario, in role: Role, demarcation: Demarcation, out priority: java Integer, isGrant: java Boolean) {
 	find ScenarioTemporalContext(scenario,context);
-	TemporalContext.temporalGrantRules(context, rule);
-	TemporalGrantRule.isGrant(rule, true);
-	Role.constrainedBy(role, rule);
-	Demarcation.constrainedBy(demarcation, rule);
+	find foo(context, role, demarcation, priority, isGrant);
+}
+
+pattern foo(in context: TemporalContext, in role: Role, demarcation: Demarcation, out priority: java Integer, isGrant: java Boolean) {
+	TemporalGrantRule(rule);
+	TemporalGrantRule.temporalContext(rule, context);
+	TemporalGrantRule.isGrant(rule, isGrant);
+	TemporalGrantRule.role(rule, role);
+	TemporalGrantRule.demarcation(rule, demarcation);
 	TemporalGrantRule.priority(rule, priority);
 }
 
+pattern GrantPriority(in scenario: java Scenario, in role: Role, demarcation: Demarcation, out priority: java Integer) {
+	find RulePriority(scenario, role, demarcation, priority, true);
+}
+
 pattern RevokePriority(in scenario: java Scenario, in role: Role, demarcation: Demarcation, out priority: java Integer) {
-	find ScenarioTemporalContext(scenario,context);
-	TemporalContext.temporalGrantRules(context, rule);
-	TemporalGrantRule.isGrant(rule, false);
-	Role.constrainedBy(role, rule);
-	Demarcation.constrainedBy(demarcation, rule);
-	TemporalGrantRule.priority(rule, priority);
+	find RulePriority(scenario, role, demarcation, priority, false);
 }

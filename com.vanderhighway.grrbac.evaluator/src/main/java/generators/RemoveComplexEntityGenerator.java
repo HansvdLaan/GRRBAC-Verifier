@@ -92,11 +92,11 @@ public class RemoveComplexEntityGenerator {
 //        removeUnlockTARSuite.addCases(addUnlockTestCaseCopy);
 //        removeUnlockTARSuite.addCases(addUnlockTestCaseCopy);
 
-        removeTGRSuite.setCases(GeneratorUtils.randomSublist(removeTGRSuite.getCases(), 80, rangen));
-        removeLockTARSuite.setCases(GeneratorUtils.randomSublist(removeLockTARSuite.getCases(), 80, rangen));
-        removeProtectTARSuite.setCases(GeneratorUtils.randomSublist(removeProtectTARSuite.getCases(), 80, rangen));
-        removeUnlockTARSuite.setCases(GeneratorUtils.randomSublist(removeUnlockTARSuite.getCases(), 80, rangen));
-//
+//        removeTGRSuite.setCases(GeneratorUtils.randomSublist(removeTGRSuite.getCases(), 80, rangen));
+//        removeLockTARSuite.setCases(GeneratorUtils.randomSublist(removeLockTARSuite.getCases(), 80, rangen));
+//        removeProtectTARSuite.setCases(GeneratorUtils.randomSublist(removeProtectTARSuite.getCases(), 80, rangen));
+//        removeUnlockTARSuite.setCases(GeneratorUtils.randomSublist(removeUnlockTARSuite.getCases(), 80, rangen));
+
         collection.addSuites(removeTGRSuite, removeLockTARSuite, removeProtectTARSuite, removeUnlockTARSuite);
 
         new File("./evaluation/RemoveComplexEntities/data").mkdirs();

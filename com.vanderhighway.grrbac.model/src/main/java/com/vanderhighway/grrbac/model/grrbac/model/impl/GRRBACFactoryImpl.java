@@ -67,7 +67,6 @@ public class GRRBACFactoryImpl extends EFactoryImpl implements GRRBACFactory {
 			case GRRBACPackage.VALID_DAY_TIME_RANGE: return createValidDayTimeRange();
 			case GRRBACPackage.VALID_DAY_OF_WEEK_MONTH: return createValidDayOfWeekMonth();
 			case GRRBACPackage.TEMPORAL_GRANT_RULE: return createTemporalGrantRule();
-			case GRRBACPackage.SACS_OBJECT: return createSACSObject();
 			case GRRBACPackage.SITE_ACCESS_CONTROL_SYSTEM: return createSiteAccessControlSystem();
 			case GRRBACPackage.SECURITY_ZONE: return createSecurityZone();
 			case GRRBACPackage.SO_DUR_CONSTRAINT: return createSoDURConstraint();
@@ -225,17 +224,6 @@ public class GRRBACFactoryImpl extends EFactoryImpl implements GRRBACFactory {
 	public TemporalGrantRule createTemporalGrantRule() {
 		TemporalGrantRuleImpl temporalGrantRule = new TemporalGrantRuleImpl();
 		return temporalGrantRule;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public SACSObject createSACSObject() {
-		SACSObjectImpl sacsObject = new SACSObjectImpl();
-		return sacsObject;
 	}
 
 	/**

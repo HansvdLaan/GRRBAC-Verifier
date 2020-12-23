@@ -147,8 +147,7 @@ pattern ValidDayOfYearAllCombinedInstance_To_Scenario(in validDay: ValidDay, out
 	find ValidDayOfYearAllCombinedInstance(validDay, _, _, _, _, starttime, endtime);
 	scenario == distinct find ValidDayOfYearAllCombinedInstance_TemporalContext(validDay, starttime, endtime, #context);
 }
-pattern ValidDayOfWeekAndMonthAllCombinedInstance_To_Scenario(in validDay: ValidDay, out starttime: java Integer,
-	out endtime: java Integer, scenario: java Scenario) {
+pattern ValidDayOfWeekAndMonthAllCombinedInstance_To_Scenario(in validDay: ValidDay, out starttime: java Integer, out endtime: java Integer, scenario: java Scenario) {
 	ValidDayOfWeekMonth(validDay);
 	find ValidDayOfWeekAndMonthAllCombinedInstance(_, _, validDay, _, _, _, starttime, endtime);
 	scenario == distinct find ValidDayOfWeekAndMonthAllCombinedInstance_TemporalContext(validDay, starttime, endtime, #context);
@@ -171,8 +170,10 @@ pattern ScenarioTemporalContext(in scenario: java Scenario, out context: Tempora
 //pattern Scenarios(scenario: java Scenario) {
 //	java Scenario(scenario);
 //}
-
+//
 //pattern ScenarioTemporalContext(scenario: java Scenario, context: TemporalContext) {
 //	java Scenario.temporalContexts(scenario, context);
 //}
+
+
 

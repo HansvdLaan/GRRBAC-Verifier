@@ -122,22 +122,13 @@ public interface GRRBACPackage extends EPackage {
 	int ROLE__RU = 0;
 
 	/**
-	 * The feature id for the '<em><b>RD</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROLE__RD = 1;
-
-	/**
 	 * The feature id for the '<em><b>Juniors</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROLE__JUNIORS = 2;
+	int ROLE__JUNIORS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Seniors</b></em>' reference list.
@@ -146,7 +137,7 @@ public interface GRRBACPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROLE__SENIORS = 3;
+	int ROLE__SENIORS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -155,7 +146,7 @@ public interface GRRBACPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROLE__NAME = 4;
+	int ROLE__NAME = 3;
 
 	/**
 	 * The feature id for the '<em><b>Constrained By</b></em>' reference list.
@@ -164,7 +155,7 @@ public interface GRRBACPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROLE__CONSTRAINED_BY = 5;
+	int ROLE__CONSTRAINED_BY = 4;
 
 	/**
 	 * The number of structural features of the '<em>Role</em>' class.
@@ -173,7 +164,7 @@ public interface GRRBACPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROLE_FEATURE_COUNT = 6;
+	int ROLE_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Role</em>' class.
@@ -195,22 +186,13 @@ public interface GRRBACPackage extends EPackage {
 	int DEMARCATION = 2;
 
 	/**
-	 * The feature id for the '<em><b>DR</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEMARCATION__DR = 0;
-
-	/**
 	 * The feature id for the '<em><b>DP</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEMARCATION__DP = 1;
+	int DEMARCATION__DP = 0;
 
 	/**
 	 * The feature id for the '<em><b>Subdemarcations</b></em>' reference list.
@@ -219,7 +201,7 @@ public interface GRRBACPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEMARCATION__SUBDEMARCATIONS = 2;
+	int DEMARCATION__SUBDEMARCATIONS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Superdemarcations</b></em>' reference list.
@@ -228,7 +210,7 @@ public interface GRRBACPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEMARCATION__SUPERDEMARCATIONS = 3;
+	int DEMARCATION__SUPERDEMARCATIONS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -237,7 +219,7 @@ public interface GRRBACPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEMARCATION__NAME = 4;
+	int DEMARCATION__NAME = 3;
 
 	/**
 	 * The feature id for the '<em><b>Constrained By</b></em>' reference list.
@@ -246,7 +228,7 @@ public interface GRRBACPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEMARCATION__CONSTRAINED_BY = 5;
+	int DEMARCATION__CONSTRAINED_BY = 4;
 
 	/**
 	 * The number of structural features of the '<em>Demarcation</em>' class.
@@ -255,7 +237,7 @@ public interface GRRBACPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEMARCATION_FEATURE_COUNT = 6;
+	int DEMARCATION_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Demarcation</em>' class.
@@ -3649,17 +3631,6 @@ public interface GRRBACPackage extends EPackage {
 	EReference getRole_RU();
 
 	/**
-	 * Returns the meta object for the reference list '{@link com.vanderhighway.grrbac.model.grrbac.model.Role#getRD <em>RD</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>RD</em>'.
-	 * @see com.vanderhighway.grrbac.model.grrbac.model.Role#getRD()
-	 * @see #getRole()
-	 * @generated
-	 */
-	EReference getRole_RD();
-
-	/**
 	 * Returns the meta object for the reference list '{@link com.vanderhighway.grrbac.model.grrbac.model.Role#getJuniors <em>Juniors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3712,17 +3683,6 @@ public interface GRRBACPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getDemarcation();
-
-	/**
-	 * Returns the meta object for the reference list '{@link com.vanderhighway.grrbac.model.grrbac.model.Demarcation#getDR <em>DR</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>DR</em>'.
-	 * @see com.vanderhighway.grrbac.model.grrbac.model.Demarcation#getDR()
-	 * @see #getDemarcation()
-	 * @generated
-	 */
-	EReference getDemarcation_DR();
 
 	/**
 	 * Returns the meta object for the reference list '{@link com.vanderhighway.grrbac.model.grrbac.model.Demarcation#getDP <em>DP</em>}'.
@@ -5280,14 +5240,6 @@ public interface GRRBACPackage extends EPackage {
 		EReference ROLE__RU = eINSTANCE.getRole_RU();
 
 		/**
-		 * The meta object literal for the '<em><b>RD</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ROLE__RD = eINSTANCE.getRole_RD();
-
-		/**
 		 * The meta object literal for the '<em><b>Juniors</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5328,14 +5280,6 @@ public interface GRRBACPackage extends EPackage {
 		 * @generated
 		 */
 		EClass DEMARCATION = eINSTANCE.getDemarcation();
-
-		/**
-		 * The meta object literal for the '<em><b>DR</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEMARCATION__DR = eINSTANCE.getDemarcation_DR();
 
 		/**
 		 * The meta object literal for the '<em><b>DP</b></em>' reference list feature.

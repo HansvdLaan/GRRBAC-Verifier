@@ -581,7 +581,7 @@ public class GRRBACPackageImpl extends EPackageImpl implements GRRBACPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getRole_RD() {
+	public EReference getRole_Juniors() {
 		return (EReference)roleEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -591,7 +591,7 @@ public class GRRBACPackageImpl extends EPackageImpl implements GRRBACPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getRole_Juniors() {
+	public EReference getRole_Seniors() {
 		return (EReference)roleEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -601,18 +601,8 @@ public class GRRBACPackageImpl extends EPackageImpl implements GRRBACPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getRole_Seniors() {
-		return (EReference)roleEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getRole_Name() {
-		return (EAttribute)roleEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)roleEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -622,7 +612,7 @@ public class GRRBACPackageImpl extends EPackageImpl implements GRRBACPackage {
 	 */
 	@Override
 	public EReference getRole_ConstrainedBy() {
-		return (EReference)roleEClass.getEStructuralFeatures().get(5);
+		return (EReference)roleEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -641,7 +631,7 @@ public class GRRBACPackageImpl extends EPackageImpl implements GRRBACPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getDemarcation_DR() {
+	public EReference getDemarcation_DP() {
 		return (EReference)demarcationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -651,7 +641,7 @@ public class GRRBACPackageImpl extends EPackageImpl implements GRRBACPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getDemarcation_DP() {
+	public EReference getDemarcation_Subdemarcations() {
 		return (EReference)demarcationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -661,7 +651,7 @@ public class GRRBACPackageImpl extends EPackageImpl implements GRRBACPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getDemarcation_Subdemarcations() {
+	public EReference getDemarcation_Superdemarcations() {
 		return (EReference)demarcationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -671,18 +661,8 @@ public class GRRBACPackageImpl extends EPackageImpl implements GRRBACPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getDemarcation_Superdemarcations() {
-		return (EReference)demarcationEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getDemarcation_Name() {
-		return (EAttribute)demarcationEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)demarcationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -692,7 +672,7 @@ public class GRRBACPackageImpl extends EPackageImpl implements GRRBACPackage {
 	 */
 	@Override
 	public EReference getDemarcation_ConstrainedBy() {
-		return (EReference)demarcationEClass.getEStructuralFeatures().get(5);
+		return (EReference)demarcationEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -2080,14 +2060,12 @@ public class GRRBACPackageImpl extends EPackageImpl implements GRRBACPackage {
 
 		roleEClass = createEClass(ROLE);
 		createEReference(roleEClass, ROLE__RU);
-		createEReference(roleEClass, ROLE__RD);
 		createEReference(roleEClass, ROLE__JUNIORS);
 		createEReference(roleEClass, ROLE__SENIORS);
 		createEAttribute(roleEClass, ROLE__NAME);
 		createEReference(roleEClass, ROLE__CONSTRAINED_BY);
 
 		demarcationEClass = createEClass(DEMARCATION);
-		createEReference(demarcationEClass, DEMARCATION__DR);
 		createEReference(demarcationEClass, DEMARCATION__DP);
 		createEReference(demarcationEClass, DEMARCATION__SUBDEMARCATIONS);
 		createEReference(demarcationEClass, DEMARCATION__SUPERDEMARCATIONS);
@@ -2359,14 +2337,12 @@ public class GRRBACPackageImpl extends EPackageImpl implements GRRBACPackage {
 
 		initEClass(roleEClass, Role.class, "Role", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRole_RU(), this.getUser(), this.getUser_UR(), "RU", null, 0, -1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRole_RD(), this.getDemarcation(), this.getDemarcation_DR(), "RD", null, 0, -1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRole_Juniors(), this.getRole(), this.getRole_Seniors(), "juniors", null, 0, -1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRole_Seniors(), this.getRole(), this.getRole_Juniors(), "seniors", null, 0, -1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRole_Name(), ecorePackage.getEString(), "name", null, 0, 1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRole_ConstrainedBy(), this.getTemporalGrantRule(), this.getTemporalGrantRule_Role(), "constrainedBy", null, 0, -1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(demarcationEClass, Demarcation.class, "Demarcation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDemarcation_DR(), this.getRole(), this.getRole_RD(), "DR", null, 0, -1, Demarcation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDemarcation_DP(), this.getPermission(), this.getPermission_PD(), "DP", null, 0, -1, Demarcation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDemarcation_Subdemarcations(), this.getDemarcation(), this.getDemarcation_Superdemarcations(), "subdemarcations", null, 0, -1, Demarcation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDemarcation_Superdemarcations(), this.getDemarcation(), this.getDemarcation_Subdemarcations(), "superdemarcations", null, 0, -1, Demarcation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2422,7 +2398,7 @@ public class GRRBACPackageImpl extends EPackageImpl implements GRRBACPackage {
 		initEReference(getTemporalGrantRule_Demarcation(), this.getDemarcation(), this.getDemarcation_ConstrainedBy(), "demarcation", null, 0, 1, TemporalGrantRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTemporalGrantRule_TemporalContext(), this.getTemporalContext(), this.getTemporalContext_TemporalGrantRules(), "temporalContext", null, 0, 1, TemporalGrantRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(sacsObjectEClass, SACSObject.class, "SACSObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(sacsObjectEClass, SACSObject.class, "SACSObject", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSACSObject_Name(), ecorePackage.getEString(), "name", null, 0, 1, SACSObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSACSObject_OP(), this.getPermission(), this.getPermission_PO(), "OP", null, 0, 1, SACSObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see com.vanderhighway.grrbac.model.grrbac.model.GRRBACPackage#getSACSObject()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface SACSObject extends EObject {

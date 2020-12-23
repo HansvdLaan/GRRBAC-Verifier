@@ -121,15 +121,6 @@ public interface GRRBACFactory extends EFactory {
 	TemporalGrantRule createTemporalGrantRule();
 
 	/**
-	 * Returns a new object of class '<em>SACS Object</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SACS Object</em>'.
-	 * @generated
-	 */
-	SACSObject createSACSObject();
-
-	/**
 	 * Returns a new object of class '<em>Site Access Control System</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

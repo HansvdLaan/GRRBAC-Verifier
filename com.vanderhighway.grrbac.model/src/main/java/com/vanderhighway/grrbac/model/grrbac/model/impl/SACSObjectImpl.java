@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
-public class SACSObjectImpl extends MinimalEObjectImpl.Container implements SACSObject {
+public abstract class SACSObjectImpl extends MinimalEObjectImpl.Container implements SACSObject {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->

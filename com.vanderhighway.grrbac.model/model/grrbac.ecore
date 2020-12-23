@@ -10,8 +10,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="Role">
     <eStructuralFeatures xsi:type="ecore:EReference" name="RU" upperBound="-1" eType="#//User"
         eOpposite="#//User/UR"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="RD" upperBound="-1" eType="#//Demarcation"
-        eOpposite="#//Demarcation/DR"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="juniors" upperBound="-1"
         eType="#//Role" eOpposite="#//Role/seniors"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="seniors" upperBound="-1"
@@ -22,8 +20,6 @@
         eType="#//TemporalGrantRule" eOpposite="#//TemporalGrantRule/role"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Demarcation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="DR" upperBound="-1" eType="#//Role"
-        eOpposite="#//Role/RD"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="DP" upperBound="-1" eType="#//Permission"
         eOpposite="#//Permission/PD"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subdemarcations" upperBound="-1"
@@ -110,7 +106,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="temporalContext" eType="#//TemporalContext"
         eOpposite="#//TemporalContext/temporalGrantRules"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SACSObject">
+  <eClassifiers xsi:type="ecore:EClass" name="SACSObject" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="OP" eType="#//Permission"

@@ -2,7 +2,6 @@
  */
 package com.vanderhighway.grrbac.model.grrbac.model.impl;
 
-import com.vanderhighway.grrbac.model.grrbac.model.Demarcation;
 import com.vanderhighway.grrbac.model.grrbac.model.GRRBACPackage;
 import com.vanderhighway.grrbac.model.grrbac.model.Role;
 import com.vanderhighway.grrbac.model.grrbac.model.TemporalGrantRule;
@@ -33,7 +32,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.impl.RoleImpl#getRU <em>RU</em>}</li>
- *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.impl.RoleImpl#getRD <em>RD</em>}</li>
  *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.impl.RoleImpl#getJuniors <em>Juniors</em>}</li>
  *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.impl.RoleImpl#getSeniors <em>Seniors</em>}</li>
  *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.impl.RoleImpl#getName <em>Name</em>}</li>
@@ -52,16 +50,6 @@ public class RoleImpl extends MinimalEObjectImpl.Container implements Role {
 	 * @ordered
 	 */
 	protected EList<User> ru;
-
-	/**
-	 * The cached value of the '{@link #getRD() <em>RD</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRD()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Demarcation> rd;
 
 	/**
 	 * The cached value of the '{@link #getJuniors() <em>Juniors</em>}' reference list.
@@ -151,19 +139,6 @@ public class RoleImpl extends MinimalEObjectImpl.Container implements Role {
 	 * @generated
 	 */
 	@Override
-	public EList<Demarcation> getRD() {
-		if (rd == null) {
-			rd = new EObjectWithInverseResolvingEList.ManyInverse<Demarcation>(Demarcation.class, this, GRRBACPackage.ROLE__RD, GRRBACPackage.DEMARCATION__DR);
-		}
-		return rd;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<Role> getJuniors() {
 		if (juniors == null) {
 			juniors = new EObjectWithInverseResolvingEList.ManyInverse<Role>(Role.class, this, GRRBACPackage.ROLE__JUNIORS, GRRBACPackage.ROLE__SENIORS);
@@ -231,8 +206,6 @@ public class RoleImpl extends MinimalEObjectImpl.Container implements Role {
 		switch (featureID) {
 			case GRRBACPackage.ROLE__RU:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRU()).basicAdd(otherEnd, msgs);
-			case GRRBACPackage.ROLE__RD:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRD()).basicAdd(otherEnd, msgs);
 			case GRRBACPackage.ROLE__JUNIORS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getJuniors()).basicAdd(otherEnd, msgs);
 			case GRRBACPackage.ROLE__SENIORS:
@@ -253,8 +226,6 @@ public class RoleImpl extends MinimalEObjectImpl.Container implements Role {
 		switch (featureID) {
 			case GRRBACPackage.ROLE__RU:
 				return ((InternalEList<?>)getRU()).basicRemove(otherEnd, msgs);
-			case GRRBACPackage.ROLE__RD:
-				return ((InternalEList<?>)getRD()).basicRemove(otherEnd, msgs);
 			case GRRBACPackage.ROLE__JUNIORS:
 				return ((InternalEList<?>)getJuniors()).basicRemove(otherEnd, msgs);
 			case GRRBACPackage.ROLE__SENIORS:
@@ -275,8 +246,6 @@ public class RoleImpl extends MinimalEObjectImpl.Container implements Role {
 		switch (featureID) {
 			case GRRBACPackage.ROLE__RU:
 				return getRU();
-			case GRRBACPackage.ROLE__RD:
-				return getRD();
 			case GRRBACPackage.ROLE__JUNIORS:
 				return getJuniors();
 			case GRRBACPackage.ROLE__SENIORS:
@@ -301,10 +270,6 @@ public class RoleImpl extends MinimalEObjectImpl.Container implements Role {
 			case GRRBACPackage.ROLE__RU:
 				getRU().clear();
 				getRU().addAll((Collection<? extends User>)newValue);
-				return;
-			case GRRBACPackage.ROLE__RD:
-				getRD().clear();
-				getRD().addAll((Collection<? extends Demarcation>)newValue);
 				return;
 			case GRRBACPackage.ROLE__JUNIORS:
 				getJuniors().clear();
@@ -336,9 +301,6 @@ public class RoleImpl extends MinimalEObjectImpl.Container implements Role {
 			case GRRBACPackage.ROLE__RU:
 				getRU().clear();
 				return;
-			case GRRBACPackage.ROLE__RD:
-				getRD().clear();
-				return;
 			case GRRBACPackage.ROLE__JUNIORS:
 				getJuniors().clear();
 				return;
@@ -365,8 +327,6 @@ public class RoleImpl extends MinimalEObjectImpl.Container implements Role {
 		switch (featureID) {
 			case GRRBACPackage.ROLE__RU:
 				return ru != null && !ru.isEmpty();
-			case GRRBACPackage.ROLE__RD:
-				return rd != null && !rd.isEmpty();
 			case GRRBACPackage.ROLE__JUNIORS:
 				return juniors != null && !juniors.isEmpty();
 			case GRRBACPackage.ROLE__SENIORS:

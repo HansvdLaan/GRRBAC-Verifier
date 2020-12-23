@@ -15,14 +15,12 @@
     </genClasses>
     <genClasses ecoreClass="grrbac.ecore#//Role">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Role/RU"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Role/RD"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Role/juniors"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Role/seniors"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//Role/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Role/constrainedBy"/>
     </genClasses>
     <genClasses ecoreClass="grrbac.ecore#//Demarcation">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Demarcation/DR"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Demarcation/DP"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Demarcation/subdemarcations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//Demarcation/superdemarcations"/>

@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.Role#getRU <em>RU</em>}</li>
- *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.Role#getRD <em>RD</em>}</li>
  *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.Role#getJuniors <em>Juniors</em>}</li>
  *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.Role#getSeniors <em>Seniors</em>}</li>
  *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.Role#getName <em>Name</em>}</li>
@@ -41,20 +40,6 @@ public interface Role extends EObject {
 	 * @generated
 	 */
 	EList<User> getRU();
-
-	/**
-	 * Returns the value of the '<em><b>RD</b></em>' reference list.
-	 * The list contents are of type {@link com.vanderhighway.grrbac.model.grrbac.model.Demarcation}.
-	 * It is bidirectional and its opposite is '{@link com.vanderhighway.grrbac.model.grrbac.model.Demarcation#getDR <em>DR</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>RD</em>' reference list.
-	 * @see com.vanderhighway.grrbac.model.grrbac.model.GRRBACPackage#getRole_RD()
-	 * @see com.vanderhighway.grrbac.model.grrbac.model.Demarcation#getDR
-	 * @model opposite="DR"
-	 * @generated
-	 */
-	EList<Demarcation> getRD();
 
 	/**
 	 * Returns the value of the '<em><b>Juniors</b></em>' reference list.

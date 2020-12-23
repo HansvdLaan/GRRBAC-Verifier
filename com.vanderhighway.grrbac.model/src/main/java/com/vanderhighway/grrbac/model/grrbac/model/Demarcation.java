@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.Demarcation#getDR <em>DR</em>}</li>
  *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.Demarcation#getDP <em>DP</em>}</li>
  *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.Demarcation#getSubdemarcations <em>Subdemarcations</em>}</li>
  *   <li>{@link com.vanderhighway.grrbac.model.grrbac.model.Demarcation#getSuperdemarcations <em>Superdemarcations</em>}</li>
@@ -28,20 +27,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Demarcation extends EObject {
-	/**
-	 * Returns the value of the '<em><b>DR</b></em>' reference list.
-	 * The list contents are of type {@link com.vanderhighway.grrbac.model.grrbac.model.Role}.
-	 * It is bidirectional and its opposite is '{@link com.vanderhighway.grrbac.model.grrbac.model.Role#getRD <em>RD</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>DR</em>' reference list.
-	 * @see com.vanderhighway.grrbac.model.grrbac.model.GRRBACPackage#getDemarcation_DR()
-	 * @see com.vanderhighway.grrbac.model.grrbac.model.Role#getRD
-	 * @model opposite="RD"
-	 * @generated
-	 */
-	EList<Role> getDR();
-
 	/**
 	 * Returns the value of the '<em><b>DP</b></em>' reference list.
 	 * The list contents are of type {@link com.vanderhighway.grrbac.model.grrbac.model.Permission}.

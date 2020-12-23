@@ -43,8 +43,7 @@ pattern UnlockedPriority(in scenario: java Scenario, in zone: SecurityZone, out 
 }
 
 pattern SecurityZoneAccessStatus(in scenario: java Scenario, in zone: SecurityZone, out status: java Integer) {
-	find Scenarios(scenario);
-	SecurityZone(zone);
+	find LockedPriority(scenario,zone, _);
 	maxLockedPriority == max find LockedPriority(scenario,zone, #p1);
 	maxProtectedPriority == max find ProtectedPriority(scenario,zone,#p2);
 	maxUnlockedPriority == max find UnlockedPriority(scenario,zone,#p3);

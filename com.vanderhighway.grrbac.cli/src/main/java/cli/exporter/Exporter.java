@@ -263,7 +263,7 @@ public class Exporter {
 
     public static void exportStaticScenarios(File outputFile, PolicyModifier modifier) throws IOException {
         int i = 0;
-        int max_scenario_count = 5;
+        int max_scenario_count = 1000;
         try (FileOutputStream fos = new FileOutputStream(outputFile)) {
             for(Scenarios.Match scenarioMatch: modifier.getEngine().getMatcher(Scenarios.instance()).getAllMatches()) {
                 if (i < max_scenario_count) {
@@ -272,9 +272,8 @@ public class Exporter {
                     ContextContainer contextContainer = system.getContextContainer();
                     MyScenario myScenario = (MyScenario) modifier.getManipulation().createChild(contextContainer, modifier.getEPackage().getContextContainer_MyScenarios(),
                             modifier.getEPackage().getMyScenario());
-                    for (ScenarioTemporalContext.Match stMatch : modifier.getEngine().getMatcher(ScenarioTemporalContext.instance())
-                            .getAllMatches(scenario, null)) {
-                        modifier.getManipulation().addTo(myScenario, modifier.getEPackage().getMyScenario_TemporalContexts(), stMatch.getContext());
+                    for (TemporalContext temporalContext: scenario) {
+                        modifier.getManipulation().addTo(myScenario, modifier.getEPackage().getMyScenario_TemporalContexts(), temporalContext);
                     }
                 }
                 i++;

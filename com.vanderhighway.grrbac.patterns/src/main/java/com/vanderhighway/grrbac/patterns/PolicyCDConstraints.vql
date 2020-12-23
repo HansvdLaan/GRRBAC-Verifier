@@ -6,9 +6,6 @@ package com.vanderhighway.grrbac.patterns
 
 import "https://vanderhighway.com/grrbac/2020"
 import "http://www.eclipse.org/emf/2002/Ecore"
-import java ^java.util.Set
-import java ^java.util.HashSet
-import java ^com.vanderhighway.grrbac.aggregators.distinct
 import java ^com.vanderhighway.grrbac.aggregators.Scenario
 import java ^com.vanderhighway.grrbac.patterns.PolicyAuthorizationRelations
 import java ^com.vanderhighway.grrbac.patterns.PolicyTemporalRelations
