@@ -24,7 +24,7 @@ public class AddComplexEntityGenerator {
     public static void main(String[] args) throws ParseException, ModelManipulationException, InterruptedException, IOException {
 
         GRRBACPackage.eINSTANCE.getName();
-        Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("trbac", new XMIResourceFactoryImpl());
+        Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("grrbac", new XMIResourceFactoryImpl());
         Resource.Factory.Registry.INSTANCE.getContentTypeToFactoryMap().put("*", new XMIResourceFactoryImpl());
 
         URI performanceTestCase = URI.createFileURI(args[0]);
@@ -69,11 +69,10 @@ public class AddComplexEntityGenerator {
                             new Action(ActionType.ADD_TEMPORALGRANTRULE,
                                     Arrays.asList("TEST_TGR", context.getName(), namedRole.getName(),
                                             assignDemarcation.getName(), "true", "4")));
-                    TestCase testCase = new TestCase("ADD_GRANT_TGR_TEST_" + actionCounter, action);
+                    TestCase testCase = new TestCase("ADD_GRANT_TGR_TEST_" + actionCounter++, action);
                     addGrantTGRSuite.addCase(testCase);
                     notAssignedNamedDemarcations.remove(assignDemarcation);
                 }
-                actionCounter++;
             }
         }
 
@@ -85,9 +84,8 @@ public class AddComplexEntityGenerator {
                                 Arrays.asList("TEST_TGR", rule.getTemporalContext().getName(),
                                         rule.getRole().getName(), rule.getDemarcation().getName(),
                                         Boolean.toString(!rule.isIsGrant()), Integer.toString(rule.getPriority() + 1))));
-                TestCase testCase = new TestCase("ADD_REVOKE_TGR_TEST_" + actionCounter, action);
+                TestCase testCase = new TestCase("ADD_REVOKE_TGR_TEST_" + actionCounter++, action);
                 addRevokeTGRSuite.addCase(testCase);
-                actionCounter++;
             }
         }
 
@@ -109,10 +107,9 @@ public class AddComplexEntityGenerator {
                 TestCase testCase = new TestCase("ADD_TAR_PROTECTED_TEST_" + actionCounter2++, action);
                 addProtectTARSuite.addCase(testCase);
             } else {
-                TestCase testCase = new TestCase("ADD_TAR_PROTECTED_TEST_" + actionCounter3++, action);
+                TestCase testCase = new TestCase("ADD_TAR_UNLOCKED_TEST_" + actionCounter3++, action);
                 addUnlockTARSuite.addCase(testCase);
             }
-            actionCounter++;
 
             int newRuleStatus2 = (rule.getStatus() + 2) % 3;
             CompoundAction action2 = new CompoundAction(
@@ -127,39 +124,38 @@ public class AddComplexEntityGenerator {
                 TestCase testCase2 = new TestCase("ADD_TAR_PROTECTED_TEST_" + actionCounter2++, action2);
                 addProtectTARSuite.addCase(testCase2);
             } else {
-                TestCase testCase2 = new TestCase("ADD_TAR_PROTECTED_TEST_" + actionCounter3++, action2);
+                TestCase testCase2 = new TestCase("ADD_TAR_UNLOCKED_TEST_" + actionCounter3++, action2);
                 addUnlockTARSuite.addCase(testCase2);
             }
-            actionCounter++;
         }
 
         // Duplicate all testcases times 3
 
-//        List<TestCase> addGrantTGRTestCasesCopy = new LinkedList<>(addGrantTGRSuite.getCases());
-//        addGrantTGRSuite.addCases(addGrantTGRTestCasesCopy);
-//        addGrantTGRSuite.addCases(addGrantTGRTestCasesCopy);
-//
-//        List<TestCase> addRevokeTGRTestCaseCopy = new LinkedList<>(addRevokeTGRSuite.getCases());
-//        addRevokeTGRSuite.addCases(addRevokeTGRTestCaseCopy);
-//        addRevokeTGRSuite.addCases(addRevokeTGRTestCaseCopy);
-//
-//        List<TestCase> addLockTARTestCaseCopy = new LinkedList<>(addLockTARSuite.getCases());
-//        addLockTARSuite.addCases(addLockTARTestCaseCopy);
-//        addLockTARSuite.addCases(addLockTARTestCaseCopy);
-//
-//        List<TestCase> addProtectTARTestCaseCopy = new LinkedList<>(addProtectTARSuite.getCases());
-//        addProtectTARSuite.addCases(addProtectTARTestCaseCopy);
-//        addProtectTARSuite.addCases(addProtectTARTestCaseCopy);
-//
-//        List<TestCase> addUnlockTestCaseCopy = new LinkedList<>(addUnlockTARSuite.getCases());
-//        addUnlockTARSuite.addCases(addUnlockTestCaseCopy);
-//        addUnlockTARSuite.addCases(addUnlockTestCaseCopy);
+        List<TestCase> addGrantTGRTestCasesCopy = new LinkedList<>(addGrantTGRSuite.getCases());
+        addGrantTGRSuite.addCases(addGrantTGRTestCasesCopy);
+        addGrantTGRSuite.addCases(addGrantTGRTestCasesCopy);
 
-        addGrantTGRSuite.setCases(GeneratorUtils.randomSublist(addGrantTGRSuite.getCases(), 80, rangen));
-        addRevokeTGRSuite.setCases(GeneratorUtils.randomSublist(addRevokeTGRSuite.getCases(), 80, rangen));
-        addLockTARSuite.setCases(GeneratorUtils.randomSublist(addLockTARSuite.getCases(), 80, rangen));
-        addProtectTARSuite.setCases(GeneratorUtils.randomSublist(addProtectTARSuite.getCases(), 80, rangen));
-        addUnlockTARSuite.setCases(GeneratorUtils.randomSublist(addUnlockTARSuite.getCases(), 80, rangen));
+        List<TestCase> addRevokeTGRTestCaseCopy = new LinkedList<>(addRevokeTGRSuite.getCases());
+        addRevokeTGRSuite.addCases(addRevokeTGRTestCaseCopy);
+        addRevokeTGRSuite.addCases(addRevokeTGRTestCaseCopy);
+
+        List<TestCase> addLockTARTestCaseCopy = new LinkedList<>(addLockTARSuite.getCases());
+        addLockTARSuite.addCases(addLockTARTestCaseCopy);
+        addLockTARSuite.addCases(addLockTARTestCaseCopy);
+
+        List<TestCase> addProtectTARTestCaseCopy = new LinkedList<>(addProtectTARSuite.getCases());
+        addProtectTARSuite.addCases(addProtectTARTestCaseCopy);
+        addProtectTARSuite.addCases(addProtectTARTestCaseCopy);
+
+        List<TestCase> addUnlockTestCaseCopy = new LinkedList<>(addUnlockTARSuite.getCases());
+        addUnlockTARSuite.addCases(addUnlockTestCaseCopy);
+        addUnlockTARSuite.addCases(addUnlockTestCaseCopy);
+
+//        addGrantTGRSuite.setCases(GeneratorUtils.randomSublist(addGrantTGRSuite.getCases(), 80, rangen));
+//        addRevokeTGRSuite.setCases(GeneratorUtils.randomSublist(addRevokeTGRSuite.getCases(), 80, rangen));
+//        addLockTARSuite.setCases(GeneratorUtils.randomSublist(addLockTARSuite.getCases(), 80, rangen));
+//        addProtectTARSuite.setCases(GeneratorUtils.randomSublist(addProtectTARSuite.getCases(), 80, rangen));
+//        addUnlockTARSuite.setCases(GeneratorUtils.randomSublist(addUnlockTARSuite.getCases(), 80, rangen));
 
         collection.addSuites(addGrantTGRSuite, addRevokeTGRSuite, addLockTARSuite, addUnlockTARSuite, addProtectTARSuite);
 
@@ -170,7 +166,7 @@ public class AddComplexEntityGenerator {
         mapper.writeValue(Paths.get("./evaluation/AddComplexEntities/data/tsc_counter.json").toFile(), counter);
 
         File caseFile = new File(args[0]);
-        Files.copy(caseFile.toPath(), new File("./evaluation/AddComplexEntities/data/model.trbac").toPath());
+        Files.copy(caseFile.toPath(), new File("./evaluation/AddComplexEntities/data/model.grrbac").toPath());
     }
 
 

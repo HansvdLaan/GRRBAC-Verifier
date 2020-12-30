@@ -50,7 +50,7 @@ public class Evaluator {
         System.setErr(new PrintStream(new FileOutputStream("errors.log", true), true));
 
         GRRBACPackage.eINSTANCE.getName();
-        Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("trbac", new XMIResourceFactoryImpl());
+        Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("grrbac", new XMIResourceFactoryImpl());
         Resource.Factory.Registry.INSTANCE.getContentTypeToFactoryMap().put("*", new XMIResourceFactoryImpl());
 
         ObjectMapper mapper = new ObjectMapper();

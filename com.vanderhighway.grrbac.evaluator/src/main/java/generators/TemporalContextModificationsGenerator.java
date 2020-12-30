@@ -24,7 +24,7 @@ public class TemporalContextModificationsGenerator {
     public static void main(String[] args) throws ParseException, ModelManipulationException, InterruptedException, IOException {
 
         GRRBACPackage.eINSTANCE.getName();
-        Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("trbac", new XMIResourceFactoryImpl());
+        Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("grrbac", new XMIResourceFactoryImpl());
         Resource.Factory.Registry.INSTANCE.getContentTypeToFactoryMap().put("*", new XMIResourceFactoryImpl());
 
         URI performanceTestCase = URI.createFileURI(args[0]);
@@ -144,13 +144,13 @@ public class TemporalContextModificationsGenerator {
         int n =  10;
         Random rangen = new Random(seed);
 
-//        List<TestCase> addTemporalContextTestCasesCopy = new LinkedList<>(addTemporalContext.getCases());
-//        addTemporalContext.addCases(addTemporalContextTestCasesCopy);
-//        addTemporalContext.addCases(addTemporalContextTestCasesCopy);
-//
-//        List<TestCase> removeTemporalContextTestCasesCopy = new LinkedList<>(removeTemporalContext.getCases());
-//        removeTemporalContext.addCases(removeTemporalContextTestCasesCopy);
-//        removeTemporalContext.addCases(removeTemporalContextTestCasesCopy);
+        List<TestCase> addTemporalContextTestCasesCopy = new LinkedList<>(addTemporalContext.getCases());
+        addTemporalContext.addCases(addTemporalContextTestCasesCopy);
+        addTemporalContext.addCases(addTemporalContextTestCasesCopy);
+
+        List<TestCase> removeTemporalContextTestCasesCopy = new LinkedList<>(removeTemporalContext.getCases());
+        removeTemporalContext.addCases(removeTemporalContextTestCasesCopy);
+        removeTemporalContext.addCases(removeTemporalContextTestCasesCopy);
 
         collection.addSuites(addTemporalContext, removeTemporalContext);
 
@@ -161,7 +161,7 @@ public class TemporalContextModificationsGenerator {
         mapper.writeValue(Paths.get("./evaluation/Contexts/data/tsc_counter.json").toFile(), counter);
 
         File caseFile = new File(args[0]);
-        Files.copy(caseFile.toPath(), new File("./evaluation/Contexts/data/model.trbac").toPath());
+        Files.copy(caseFile.toPath(), new File("./evaluation/Contexts/data/model.grrbac").toPath());
     }
 
 

@@ -55,7 +55,7 @@ public class AuthorizationConstraintsTests {
     @BeforeAll
     static void setup() throws ParseException, ModelManipulationException {
         GRRBACPackage.eINSTANCE.getName();
-        Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("trbac", new XMIResourceFactoryImpl());
+        Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("grrbac", new XMIResourceFactoryImpl());
         Resource.Factory.Registry.INSTANCE.getContentTypeToFactoryMap().put("*", new XMIResourceFactoryImpl());
 
         uriEmptySchedules = URI.createFileURI("./src/test/resources/models/shared/simple_company.grrbac");
@@ -67,7 +67,7 @@ public class AuthorizationConstraintsTests {
 
     @BeforeEach
     void init() throws ParseException, ModelManipulationException {
-        emptyScheduleResource = new ResourceSetImpl().createResource( URI.createFileURI("test.trbac"));
+        emptyScheduleResource = new ResourceSetImpl().createResource( URI.createFileURI("test.grrbac"));
         emptyScheduleResource.getContents().add(EcoreUtil.copy(emptyScheduleResourceMaster.getContents().get(0)));
         System.out.println(emptyScheduleResource);
 

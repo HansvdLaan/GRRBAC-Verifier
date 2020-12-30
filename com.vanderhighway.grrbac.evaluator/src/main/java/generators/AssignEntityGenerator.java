@@ -23,7 +23,7 @@ public class AssignEntityGenerator {
     public static void main(String[] args) throws ParseException, ModelManipulationException, InterruptedException, IOException {
 
         GRRBACPackage.eINSTANCE.getName();
-        Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("trbac", new XMIResourceFactoryImpl());
+        Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("grrbac", new XMIResourceFactoryImpl());
         Resource.Factory.Registry.INSTANCE.getContentTypeToFactoryMap().put("*", new XMIResourceFactoryImpl());
 
         URI performanceTestCase = URI.createFileURI(args[0]);
@@ -84,15 +84,15 @@ public class AssignEntityGenerator {
             }
         }
 
-//        List<TestCase> assignURTestCasesCopy = new LinkedList<>(assignURSuite.getCases());
-//        assignURSuite.addCases(assignURTestCasesCopy);
-//        assignURSuite.addCases(assignURTestCasesCopy);
-//
-//        List<TestCase> assignDPTestCasesCopy = new LinkedList<>(assignDPSuite.getCases());
-//        assignDPSuite.addCases(assignDPTestCasesCopy);
-//        assignDPSuite.addCases(assignDPTestCasesCopy);
+        List<TestCase> assignURTestCasesCopy = new LinkedList<>(assignURSuite.getCases());
+        assignURSuite.addCases(assignURTestCasesCopy);
+        assignURSuite.addCases(assignURTestCasesCopy);
 
-        assignURSuite.setCases(GeneratorUtils.randomSublist(assignURSuite.getCases(), 500, rangen));
+        List<TestCase> assignDPTestCasesCopy = new LinkedList<>(assignDPSuite.getCases());
+        assignDPSuite.addCases(assignDPTestCasesCopy);
+        assignDPSuite.addCases(assignDPTestCasesCopy);
+
+        //assignURSuite.setCases(GeneratorUtils.randomSublist(assignURSuite.getCases(), 500, rangen));
 
         collection.addSuites(assignURSuite, assignDPSuite);
 
@@ -103,7 +103,7 @@ public class AssignEntityGenerator {
         mapper.writeValue(Paths.get("./evaluation/AssignEntities/data/tsc_counter.json").toFile(), counter);
 
         File caseFile = new File(args[0]);
-        Files.copy(caseFile.toPath(), new File("./evaluation/AssignEntities/data/model.trbac").toPath());
+        Files.copy(caseFile.toPath(), new File("./evaluation/AssignEntities/data/model.grrbac").toPath());
     }
 
 

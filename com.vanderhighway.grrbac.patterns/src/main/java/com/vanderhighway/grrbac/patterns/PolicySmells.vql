@@ -2,7 +2,6 @@ package com.vanderhighway.grrbac.patterns
 
 import "https://vanderhighway.com/grrbac/2020"
 import "http://www.eclipse.org/emf/2002/Ecore"
-import java ^com.vanderhighway.grrbac.aggregators.distinct
 import java ^com.vanderhighway.grrbac.aggregators.Scenario
 
 pattern UnusedRole(role: Role) {

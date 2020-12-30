@@ -26,7 +26,7 @@ public class RemoveBasicEntityGenerator {
     public static void main(String[] args) throws ParseException, ModelManipulationException, InterruptedException, IOException {
 
         GRRBACPackage.eINSTANCE.getName();
-        Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("trbac", new XMIResourceFactoryImpl());
+        Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("grrbac", new XMIResourceFactoryImpl());
         Resource.Factory.Registry.INSTANCE.getContentTypeToFactoryMap().put("*", new XMIResourceFactoryImpl());
 
         URI performanceTestCase = URI.createFileURI(args[0]);
@@ -88,21 +88,21 @@ public class RemoveBasicEntityGenerator {
         //removeDemarcationSuite.setCases(GeneratorUtils.randomSublist(removeDemarcationSuite.getCases(), 50, rangen));
         //removePermissionSuite.setCases(GeneratorUtils.randomSublist(removePermissionSuite.getCases(), 50, rangen));
 
-//        List<TestCase> removeUserTestCasesCopy = new LinkedList<>(removeUserSuite.getCases());
-//        removeUserSuite.addCases(removeUserTestCasesCopy);
-//        removeUserSuite.addCases(removeUserTestCasesCopy);
-//
-//        List<TestCase> removeRoleTestCasesCopy = new LinkedList<>(removeRoleSuite.getCases());
-//        removeRoleSuite.addCases(removeRoleTestCasesCopy);
-//        removeRoleSuite.addCases(removeRoleTestCasesCopy);
-//
-//        List<TestCase> removeDemarcationTestCasesCopy = new LinkedList<>(removeDemarcationSuite.getCases());
-//        removeDemarcationSuite.addCases(removeDemarcationTestCasesCopy);
-//        removeDemarcationSuite.addCases(removeDemarcationTestCasesCopy);
-//
-//        List<TestCase> removePermissionTestCaseCopy = new LinkedList<>(removePermissionSuite.getCases());
-//        removePermissionSuite.addCases(removePermissionTestCaseCopy);
-//        removePermissionSuite.addCases(removePermissionTestCaseCopy);
+        List<TestCase> removeUserTestCasesCopy = new LinkedList<>(removeUserSuite.getCases());
+        removeUserSuite.addCases(removeUserTestCasesCopy);
+        removeUserSuite.addCases(removeUserTestCasesCopy);
+
+        List<TestCase> removeRoleTestCasesCopy = new LinkedList<>(removeRoleSuite.getCases());
+        removeRoleSuite.addCases(removeRoleTestCasesCopy);
+        removeRoleSuite.addCases(removeRoleTestCasesCopy);
+
+        List<TestCase> removeDemarcationTestCasesCopy = new LinkedList<>(removeDemarcationSuite.getCases());
+        removeDemarcationSuite.addCases(removeDemarcationTestCasesCopy);
+        removeDemarcationSuite.addCases(removeDemarcationTestCasesCopy);
+
+        List<TestCase> removePermissionTestCaseCopy = new LinkedList<>(removePermissionSuite.getCases());
+        removePermissionSuite.addCases(removePermissionTestCaseCopy);
+        removePermissionSuite.addCases(removePermissionTestCaseCopy);
 
         collection.addSuites(removeUserSuite, removeRoleSuite, removeDemarcationSuite, removePermissionSuite);
 
@@ -113,6 +113,6 @@ public class RemoveBasicEntityGenerator {
         mapper.writeValue(Paths.get("./evaluation/RemoveEntities/data/tsc_counter.json").toFile(), counter);
 
         File caseFile = new File(args[0]);
-        Files.copy(caseFile.toPath(), new File("./evaluation/RemoveEntities/data/model.trbac").toPath());
+        Files.copy(caseFile.toPath(), new File("./evaluation/RemoveEntities/data/model.grrbac").toPath());
     }
 }

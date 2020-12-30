@@ -26,7 +26,7 @@ public class DeassignEntityGenerator {
     public static void main(String[] args) throws ParseException, ModelManipulationException, InterruptedException, IOException {
 
         GRRBACPackage.eINSTANCE.getName();
-        Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("trbac", new XMIResourceFactoryImpl());
+        Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("grrbac", new XMIResourceFactoryImpl());
         Resource.Factory.Registry.INSTANCE.getContentTypeToFactoryMap().put("*", new XMIResourceFactoryImpl());
 
         URI performanceTestCase = URI.createFileURI(args[0]);
@@ -75,13 +75,13 @@ public class DeassignEntityGenerator {
             }
         }
 
-//        List<TestCase> assignURTestCasesCopy = new LinkedList<>(deassignURSuite.getCases());
-//        deassignURSuite.addCases(assignURTestCasesCopy);
-//        deassignURSuite.addCases(assignURTestCasesCopy);
-//
-//        List<TestCase> assignDPTestCasesCopy = new LinkedList<>(deassignDPSuite.getCases());
-//        deassignDPSuite.addCases(assignDPTestCasesCopy);
-//        deassignDPSuite.addCases(assignDPTestCasesCopy);
+        List<TestCase> assignURTestCasesCopy = new LinkedList<>(deassignURSuite.getCases());
+        deassignURSuite.addCases(assignURTestCasesCopy);
+        deassignURSuite.addCases(assignURTestCasesCopy);
+
+        List<TestCase> assignDPTestCasesCopy = new LinkedList<>(deassignDPSuite.getCases());
+        deassignDPSuite.addCases(assignDPTestCasesCopy);
+        deassignDPSuite.addCases(assignDPTestCasesCopy);
 
         collection.addSuites(deassignURSuite, deassignDPSuite);
 
@@ -92,7 +92,7 @@ public class DeassignEntityGenerator {
         mapper.writeValue(Paths.get("./evaluation/DeassignEntities/data/tsc_counter.json").toFile(), counter);
 
         File caseFile = new File(args[0]);
-        Files.copy(caseFile.toPath(), new File("./evaluation/DeassignEntities/data/model.trbac").toPath());
+        Files.copy(caseFile.toPath(), new File("./evaluation/DeassignEntities/data/model.grrbac").toPath());
     }
 
 

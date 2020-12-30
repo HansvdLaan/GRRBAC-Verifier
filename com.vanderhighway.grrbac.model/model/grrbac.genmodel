@@ -8,7 +8,7 @@
   <genPackages prefix="GRRBAC" basePackage="com.vanderhighway.grrbac.model" disposableProviderFactory="true"
       interfacePackageSuffix="model" metaDataPackageSuffix="model" classPackageSuffix="model.impl"
       utilityPackageSuffix="model.util" providerPackageSuffix="model.provider" presentationPackageSuffix="model.presentation"
-      testsPackageSuffix="model.tests" fileExtensions="trbac" ecorePackage="grrbac.ecore#/">
+      testsPackageSuffix="model.tests" fileExtensions="grrbac" ecorePackage="grrbac.ecore#/">
     <genClasses ecoreClass="grrbac.ecore#//User">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference grrbac.ecore#//User/UR"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute grrbac.ecore#//User/name"/>

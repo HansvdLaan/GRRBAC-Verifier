@@ -51,7 +51,7 @@ import java.util.concurrent.Callable;
  */
 public class PolicyVerifierCLI {
 
-    @CommandLine.Parameters(index = "0", description = "The policy file (.trbac)")
+    @CommandLine.Parameters(index = "0", description = "The policy file (.grrbac)")
     private File file;
 
     /**
@@ -158,7 +158,7 @@ public class PolicyVerifierCLI {
                     " |_|   \\___/|_|_|\\___|\\__, | \\_/ \\___|_|  |_|_| |_|\\___|_|   \n" +
                     "                      |___/                                  ");
             System.out.println("For GR-RBAC policies.");
-            System.out.println("version 1.0.1");
+            System.out.println("version 1.0.2");
             System.out.println();
 
             URI uri = URI.createFileURI(args[0]);
@@ -167,7 +167,7 @@ public class PolicyVerifierCLI {
 
             // Initializing the EMF package
             GRRBACPackage.eINSTANCE.getName();
-            Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("trbac", new XMIResourceFactoryImpl());
+            Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("grrbac", new XMIResourceFactoryImpl());
             Resource.Factory.Registry.INSTANCE.getContentTypeToFactoryMap().put("*", new XMIResourceFactoryImpl());
 
             ResourceSet set = new ResourceSetImpl();

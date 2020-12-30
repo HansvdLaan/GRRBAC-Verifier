@@ -28,7 +28,7 @@ public class AddBasicEntityGenerator {
         int seed = 10;
         Random rangen = new Random(seed);
 
-        for(int i=1; i<=80; i++) {
+        for(int i=0; i<80; i++) {
             CompoundAction userAction = new CompoundAction(new Action(ActionType.ADD_USER, Arrays.asList("TEST_USER_" + i)));
             TestCase userTestCase = new TestCase("ADD_USER_TEST_" + i, userAction);
             addUserSuite.addCase(userTestCase);
@@ -77,6 +77,6 @@ public class AddBasicEntityGenerator {
         mapper.writeValue(Paths.get("./evaluation/AddEntities/data/tsc_counter.json").toFile(), counter);
 
         File caseFile = new File(args[0]);
-        Files.copy(caseFile.toPath(), new File("./evaluation/AddEntities/data/model.trbac").toPath());
+        Files.copy(caseFile.toPath(), new File("./evaluation/AddEntities/data/model.grrbac").toPath());
     }
 }

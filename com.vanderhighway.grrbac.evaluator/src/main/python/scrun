@@ -8,7 +8,7 @@ import time
 subprocess.run(["chmod","+x","./runtsc"])
 
 print("Started Evaluator.")
-evaluator_process = subprocess.Popen(["java","-XX:-UsePerfData", "-jar", "../Evaluator.jar", "./data/model.trbac", "./data/tsc.json", "./tsc_counter.json"])
+evaluator_process = subprocess.Popen(["java","-XX:-UsePerfData", "-jar", "../Evaluator.jar", "./data/model.grrbac", "./data/tsc.json", "./tsc_counter.json"])
 pid = evaluator_process.pid
 print("PID:" + str(pid))
 
