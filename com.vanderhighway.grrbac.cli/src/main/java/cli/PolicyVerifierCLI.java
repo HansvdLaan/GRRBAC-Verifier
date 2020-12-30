@@ -212,7 +212,7 @@ public class PolicyVerifierCLI {
 
             // TODO: do proper parameter handling with JLine and PicoCLI
             boolean computeContextDependentAuthorizationConstriants = false;
-            if(args.length == 2 && "-cdac".equals(args[1])) {
+            if(args.length == 2 && "-allp".equals(args[1])) {
                 computeContextDependentAuthorizationConstriants = true;
             }
 

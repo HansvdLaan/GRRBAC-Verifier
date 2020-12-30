@@ -101,7 +101,7 @@ public class Evaluator {
 
         // TODO: do proper parameter handling with JLine and PicoCLI
         boolean computeContextDependentAuthorizationConstriants = false;
-        if(args.length == 4 && "-cdac".equals(args[3])) {
+        if(args.length == 4 && "-allp".equals(args[3])) {
             computeContextDependentAuthorizationConstriants = true;
         }
 

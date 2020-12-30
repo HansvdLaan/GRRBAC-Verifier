@@ -1,0 +1,93 @@
+#!/bin/bash
+
+#Set BASH to quit script and exit on errors
+
+#set -e
+
+#Functions:
+
+initialize() {
+
+find -name "runtsc" | xargs chmod +x 
+find -name "criu-ns" | xargs chmod +x 
+
+echo "Running Benchmark Tests..."
+if [ $# -eq 0 ]; then
+	echo "error: No arguments supplied"
+	exit 1	
+fi
+
+if [ "$2" != "rete" ] && [ "$2" != "rete-non-recursive" ]; then
+	echo "error: should specify if rete or rete-non-recursive tests should be run"
+	exit 1
+fi
+}
+
+move() {
+	cd ./tests$1/$2
+}
+
+runbenchmarks() {
+	if [ "$3" == "all" ]; then
+		echo "Running all non-scalability Benchmark Tests..."
+		for TESTSUITE in AddComplexEntities AddEntities AssignEntities Constraints Contexts DeassignEntities RemoveComplexEntities RemoveEntities
+		do
+			echo "Booting ${TESTSUITE}..." 
+			cd ./$TESTSUITE
+			runbenchmark "$@"
+			cd ..
+		done
+
+		echo "Waiting $4 seconds for evaluators to initialize..."
+		sleep "$4"
+
+		i = 0;
+		for TESTSUITE in AddComplexEntities AddEntities AssignEntities Constraints Contexts DeassignEntities RemoveComplexEntities RemoveEntities
+		do
+			echo "$TESTSUITE and ${PIDS[$i]}"
+			cd ./$TESTSUITE
+			sudo ../criu-ns dump -t ${PIDS[$i]} -o dump.log --shell-job
+			mv ./data/tsc_counter.json ./
+			sudo nohup ../runtsc ./tsc_counter.json > runtscnohup.log 2> runtscnohup.err &
+			cd ..
+			let "i+=1" 
+		done
+	fi 
+
+	if [ "$3" == "scalability" ]; then
+			echo "Running Scalability Benchmark Tests..."
+			cd ./"Scalability"$4
+			for TESTSUITE in AddComplexEntities AddEntities AssignEntities Constraints Contexts DeassignEntities RemoveComplexEntities RemoveEntities
+			do
+				echo "Booting ${TESTSUITE}..." 
+				cd ./$TESTSUITE
+				runbenchmark "$@"
+				cd ..
+			done
+	
+			echo "Waiting $5 seconds for evaluators to initialize..."
+			sleep "$5"
+	
+			i = 0;
+			for TESTSUITE in AddComplexEntities AddEntities AssignEntities Constraints Contexts DeassignEntities RemoveComplexEntities RemoveEntities
+			do
+				echo "$TESTSUITE and ${PIDS[$i]}"
+				cd ./$TESTSUITE
+				sudo ../criu-ns dump -t ${PIDS[$i]} -o dump.log --shell-job
+				mv ./data/tsc_counter.json ./
+				sudo nohup ../runtsc ./tsc_counter.json > runtscnohup.log 2> runtscnohup.err &
+				cd ..
+				let "i+=1" 
+			done
+		fi 
+}
+
+runbenchmark() {
+	nohup java -jar -XX:-UsePerfData -Xmx8g -Dname="$2"/$TESTSUITE ../Evaluator.jar ./data/model.trbac ./data/tsc.json ./tsc_counter.json > evalnohup.log 2> evalnohup.err &
+	PIDS=("${PIDS[@]}" $!)
+}
+
+initialize "$@"
+move "$@"
+runbenchmarks "$@"
+exit

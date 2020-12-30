@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+sudo pkill -f "java -jar -XX:-UsePerfData -Xmx8g"
+sudo pkill -f "python3 ./runtsc ./tsc_counter.json"
+
+sudo pkill -f "python3 ../criu-ns restore"
+sudo find . -name "*.img" -type f -delete
