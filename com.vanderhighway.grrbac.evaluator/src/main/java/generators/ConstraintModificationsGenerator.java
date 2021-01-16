@@ -207,7 +207,7 @@ public class ConstraintModificationsGenerator {
         }
 
         actionCounter = 0;
-        while (addSODRPSuite.getCases().size() < 10) {
+        while (addSODRPSuite.getCases().size() < n) {
             Role randomRole = GeneratorUtils.getRandom(system.getAuthorizationPolicy().getRoles()
                     .stream().filter(x -> !x.getName().contains("Proxy")).collect(Collectors.toList())
                     , rangen);
@@ -575,6 +575,103 @@ public class ConstraintModificationsGenerator {
             addCARDDPSuite.addCase(testCase);
             actionCounter++;
         }
+
+        // Duplicate all test cases
+//        List<TestCase> addSODURTestCasesCopy = new LinkedList<>(addSODURSuite.getCases());
+//        addSODURSuite.addCases(addSODURTestCasesCopy);
+//        addSODURSuite.addCases(addSODURTestCasesCopy);
+//
+//        List<TestCase> addSODUDTestCasesCopy = new LinkedList<>(addSODUDSuite.getCases());
+//        addSODUDSuite.addCases(addSODUDTestCasesCopy);
+//        addSODUDSuite.addCases(addSODUDTestCasesCopy);
+//
+//        List<TestCase> addSODUPTestCasesCopy = new LinkedList<>(addSODUPSuite.getCases());
+//        addSODUPSuite.addCases(addSODUPTestCasesCopy);
+//        addSODUPSuite.addCases(addSODUPTestCasesCopy);
+//
+//        List<TestCase> addSODRDTestCasesCopy = new LinkedList<>(addSODRDSuite.getCases());
+//        addSODRDSuite.addCases(addSODRDTestCasesCopy);
+//        addSODRDSuite.addCases(addSODRDTestCasesCopy);
+//
+//        List<TestCase> addSODRPTestCasesCopy = new LinkedList<>(addSODRPSuite.getCases());
+//        addSODRPSuite.addCases(addSODRPTestCasesCopy);
+//        addSODRPSuite.addCases(addSODRPTestCasesCopy);
+//
+//        List<TestCase> addSODDPTestCasesCopy = new LinkedList<>(addSODDPSuite.getCases());
+//        addSODDPSuite.addCases(addSODDPTestCasesCopy);
+//        addSODDPSuite.addCases(addSODDPTestCasesCopy);
+//
+//        List<TestCase> addBODURTestCasesCopy = new LinkedList<>(addBODURSuite.getCases());
+//        addBODURSuite.addCases(addBODURTestCasesCopy);
+//        addBODURSuite.addCases(addBODURTestCasesCopy);
+//
+//        List<TestCase> addBODUDTestCasesCopy = new LinkedList<>(addBODUDSuite.getCases());
+//        addBODUDSuite.addCases(addBODUDTestCasesCopy);
+//        addBODUDSuite.addCases(addBODUDTestCasesCopy);
+//
+//        List<TestCase> addBODUPTestCasesCopy = new LinkedList<>(addBODUPSuite.getCases());
+//        addBODUPSuite.addCases(addBODUPTestCasesCopy);
+//        addBODUPSuite.addCases(addBODUPTestCasesCopy);
+//
+//        List<TestCase> addBODRDTestCasesCopy = new LinkedList<>(addBODRDSuite.getCases());
+//        addBODRDSuite.addCases(addBODRDTestCasesCopy);
+//        addBODRDSuite.addCases(addBODRDTestCasesCopy);
+//
+//        List<TestCase> addBODRPTestCasesCopy = new LinkedList<>(addBODRPSuite.getCases());
+//        addBODRPSuite.addCases(addBODRPTestCasesCopy);
+//        addBODRPSuite.addCases(addBODRPTestCasesCopy);
+//
+//        List<TestCase> addBODDPTestCasesCopy = new LinkedList<>(addBODDPSuite.getCases());
+//        addBODDPSuite.addCases(addBODDPTestCasesCopy);
+//        addBODDPSuite.addCases(addBODDPTestCasesCopy);
+//
+//        List<TestCase> addPREREQURTestCasesCopy = new LinkedList<>(addPREREQURSuite.getCases());
+//        addPREREQURSuite.addCases(addPREREQURTestCasesCopy);
+//        addPREREQURSuite.addCases(addPREREQURTestCasesCopy);
+//
+//        List<TestCase> addPREREQUDTestCasesCopy = new LinkedList<>(addPREREQUDSuite.getCases());
+//        addPREREQUDSuite.addCases(addPREREQUDTestCasesCopy);
+//        addPREREQUDSuite.addCases(addPREREQUDTestCasesCopy);
+//
+//        List<TestCase> addPREREQUPTestCasesCopy = new LinkedList<>(addPREREQUPSuite.getCases());
+//        addPREREQUPSuite.addCases(addPREREQUPTestCasesCopy);
+//        addPREREQUPSuite.addCases(addPREREQUPTestCasesCopy);
+//
+//        List<TestCase> addPREREQRDTestCasesCopy = new LinkedList<>(addPREREQRDSuite.getCases());
+//        addPREREQRDSuite.addCases(addPREREQRDTestCasesCopy);
+//        addPREREQRDSuite.addCases(addPREREQRDTestCasesCopy);
+//
+//        List<TestCase> addPREREQRPTestCasesCopy = new LinkedList<>(addPREREQRPSuite.getCases());
+//        addPREREQRPSuite.addCases(addPREREQRPTestCasesCopy);
+//        addPREREQRPSuite.addCases(addPREREQRPTestCasesCopy);
+//
+//        List<TestCase> addPREREQDPTestCasesCopy = new LinkedList<>(addPREREQDPSuite.getCases());
+//        addPREREQDPSuite.addCases(addPREREQDPTestCasesCopy);
+//        addPREREQDPSuite.addCases(addPREREQDPTestCasesCopy);
+//
+//        List<TestCase> addCARDURTestCasesCopy = new LinkedList<>(addCARDURSuite.getCases());
+//        addCARDURSuite.addCases(addCARDURTestCasesCopy);
+//        addCARDURSuite.addCases(addCARDURTestCasesCopy);
+//
+//        List<TestCase> addCARDUDTestCasesCopy = new LinkedList<>(addCARDUDSuite.getCases());
+//        addCARDUDSuite.addCases(addCARDUDTestCasesCopy);
+//        addCARDUDSuite.addCases(addCARDUDTestCasesCopy);
+//
+//        List<TestCase> addCARDUPTestCasesCopy = new LinkedList<>(addCARDUPSuite.getCases());
+//        addCARDUPSuite.addCases(addCARDUPTestCasesCopy);
+//        addCARDUPSuite.addCases(addCARDUPTestCasesCopy);
+//
+//        List<TestCase> addCARDRDTestCasesCopy = new LinkedList<>(addCARDRDSuite.getCases());
+//        addCARDRDSuite.addCases(addCARDRDTestCasesCopy);
+//        addCARDRDSuite.addCases(addCARDRDTestCasesCopy);
+//
+//        List<TestCase> addCARDRPTestCasesCopy = new LinkedList<>(addCARDRPSuite.getCases());
+//        addCARDRPSuite.addCases(addCARDRPTestCasesCopy);
+//        addCARDRPSuite.addCases(addCARDRPTestCasesCopy);
+//
+//        List<TestCase> addCARDDPTestCasesCopy = new LinkedList<>(addCARDDPSuite.getCases());
+//        addCARDDPSuite.addCases(addCARDDPTestCasesCopy);
+//        addCARDDPSuite.addCases(addCARDDPTestCasesCopy);
 
         collection.addSuites(addSODURSuite, addSODUDSuite, addSODUPSuite);
         collection.addSuites(addSODRDSuite, addSODRPSuite, addSODDPSuite);

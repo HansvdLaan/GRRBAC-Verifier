@@ -11,14 +11,14 @@ import java ^com.vanderhighway.grrbac.patterns.PolicyAuthorizationRelations
 import java ^com.vanderhighway.grrbac.patterns.PolicyTemporalRelations
 
 // ---- Seperation of Duty ----
-pattern SoDURPattern(constraint: SoDURConstraint, user: User){
+pattern SoDURViolation(constraint: SoDURConstraint, user: User){
 	SoDURConstraint.left(constraint, left);
 	SoDURConstraint.right(constraint, right);
    	Role.RU(left, user);
    	Role.RU(right, user);
 }
 
-pattern SoDUDPattern(constraint: SoDUDConstraint, out scenario: java Scenario, user: User){
+pattern SoDUDViolation(constraint: SoDUDConstraint, out scenario: java Scenario, user: User){
 	SoDUDConstraint.left(constraint, left);
 	SoDUDConstraint.right(constraint, right);
 	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
@@ -27,7 +27,7 @@ pattern SoDUDPattern(constraint: SoDUDConstraint, out scenario: java Scenario, u
     find USD(user, scenario, right);
 }
 
-pattern SoDUPPattern(constraint: SoDUPConstraint, scenario: java Scenario, user: User){
+pattern SoDUPViolation(constraint: SoDUPConstraint, scenario: java Scenario, user: User){
 	SoDUPConstraint.left(constraint, left);
 	SoDUPConstraint.right(constraint, right);
 	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
@@ -36,7 +36,7 @@ pattern SoDUPPattern(constraint: SoDUPConstraint, scenario: java Scenario, user:
     find USP(user, scenario, right);
 }
 
-pattern SoDRDPattern(constraint: SoDRDConstraint, scenario: java Scenario, role: Role){
+pattern SoDRDViolation(constraint: SoDRDConstraint, scenario: java Scenario, role: Role){
 	SoDRDConstraint.left(constraint, left);
 	SoDRDConstraint.right(constraint, right);
 	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
@@ -45,7 +45,7 @@ pattern SoDRDPattern(constraint: SoDRDConstraint, scenario: java Scenario, role:
     find RHSDH(role, scenario, right);
 }
 
-pattern SoDRPPattern(constraint: SoDRPConstraint, scenario: java Scenario, role: Role){
+pattern SoDRPViolation(constraint: SoDRPConstraint, scenario: java Scenario, role: Role){
 	SoDRPConstraint.left(constraint, left);
 	SoDRPConstraint.right(constraint, right);
 	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
@@ -54,7 +54,7 @@ pattern SoDRPPattern(constraint: SoDRPConstraint, scenario: java Scenario, role:
     find RSP(role, scenario, right);
 }
 
-pattern SoDDPPattern(constraint: SoDDPConstraint, demarcation: Demarcation){
+pattern SoDDPViolation(constraint: SoDDPConstraint, demarcation: Demarcation){
 	SoDDPConstraint.left(constraint, left);
 	SoDDPConstraint.right(constraint, right);
    	Permission.PD(left, demarcation);
@@ -66,14 +66,14 @@ pattern SoDDPPattern(constraint: SoDDPConstraint, demarcation: Demarcation){
 
 // ---- Prerequisite ----
 
-pattern PrerequisiteURPattern(constraint: PrerequisiteURConstraint, user: User){
+pattern PrerequisiteURViolation(constraint: PrerequisiteURConstraint, user: User){
 	PrerequisiteURConstraint.left(constraint, left);
 	PrerequisiteURConstraint.right(constraint, right);
    	Role.RU(left, user);
    	neg Role.RU(right, user);
 }
 
-pattern PrerequisiteUDPattern(constraint: PrerequisiteUDConstraint, scenario: java Scenario, user: User){
+pattern PrerequisiteUDViolation(constraint: PrerequisiteUDConstraint, scenario: java Scenario, user: User){
 	PrerequisiteUDConstraint.left(constraint, left);
 	PrerequisiteUDConstraint.right(constraint, right);
 	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
@@ -82,7 +82,7 @@ pattern PrerequisiteUDPattern(constraint: PrerequisiteUDConstraint, scenario: ja
     neg find USD(user, scenario, right);
 }
 
-pattern PrerequisiteUPPattern(constraint: PrerequisiteUPConstraint, scenario: java Scenario, user: User){
+pattern PrerequisiteUPViolation(constraint: PrerequisiteUPConstraint, scenario: java Scenario, user: User){
 	PrerequisiteUPConstraint.left(constraint, left);
 	PrerequisiteUPConstraint.right(constraint, right);
 	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
@@ -91,7 +91,7 @@ pattern PrerequisiteUPPattern(constraint: PrerequisiteUPConstraint, scenario: ja
     neg find USP(user, scenario, right);
 }
 
-pattern PrerequisiteRDPattern(constraint: PrerequisiteRDConstraint, scenario: java Scenario, role: Role){
+pattern PrerequisiteRDViolation(constraint: PrerequisiteRDConstraint, scenario: java Scenario, role: Role){
 	PrerequisiteRDConstraint.left(constraint, left);
 	PrerequisiteRDConstraint.right(constraint, right);
 	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
@@ -100,7 +100,7 @@ pattern PrerequisiteRDPattern(constraint: PrerequisiteRDConstraint, scenario: ja
     neg find RHSDH(role, scenario, right);
 }
 
-pattern PrerequisiteRPPattern(constraint: PrerequisiteRPConstraint, scenario: java Scenario, role: Role){
+pattern PrerequisiteRPViolation(constraint: PrerequisiteRPConstraint, scenario: java Scenario, role: Role){
 	PrerequisiteRPConstraint.left(constraint, left);
 	PrerequisiteRPConstraint.right(constraint, right);
 	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
@@ -109,7 +109,7 @@ pattern PrerequisiteRPPattern(constraint: PrerequisiteRPConstraint, scenario: ja
     neg find RSP(role, scenario, right);
 }
 
-pattern PrerequisiteDPPattern(constraint: PrerequisiteDPConstraint, demarcation: Demarcation){
+pattern PrerequisiteDPViolation(constraint: PrerequisiteDPConstraint, demarcation: Demarcation){
 	PrerequisiteDPConstraint.left(constraint, left);
 	PrerequisiteDPConstraint.right(constraint, right);
    	Permission.PD(left, demarcation);
@@ -123,7 +123,7 @@ pattern PrerequisiteDPPattern(constraint: PrerequisiteDPConstraint, demarcation:
 
 // ---- Binding of Duty ----
 
-pattern BoDURPattern(constraint: BoDURConstraint, user: User){
+pattern BoDURViolation(constraint: BoDURConstraint, user: User){
 	BoDURConstraint.left(constraint, left);
 	BoDURConstraint.right(constraint, right);
    	Role.RU(left, user);
@@ -135,7 +135,7 @@ pattern BoDURPattern(constraint: BoDURConstraint, user: User){
    	Role.RU(right, user);
 }
 
-pattern BoDUDPattern(constraint: BoDUDConstraint, scenario: java Scenario, user: User){
+pattern BoDUDViolation(constraint: BoDUDConstraint, scenario: java Scenario, user: User){
 	BoDUDConstraint.left(constraint, left);
 	BoDUDConstraint.right(constraint, right);
 	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
@@ -151,7 +151,7 @@ pattern BoDUDPattern(constraint: BoDUDConstraint, scenario: java Scenario, user:
     find USD(user, scenario, right);
 }
 
-pattern BoDUPPattern(constraint: BoDUPConstraint, scenario: java Scenario, user: User){
+pattern BoDUPViolation(constraint: BoDUPConstraint, scenario: java Scenario, user: User){
 	BoDUPConstraint.left(constraint, left);
 	BoDUPConstraint.right(constraint, right);
 	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
@@ -167,7 +167,7 @@ pattern BoDUPPattern(constraint: BoDUPConstraint, scenario: java Scenario, user:
     find USP(user, scenario, right);
 }
 
-pattern BoDRDPattern(constraint: BoDRDConstraint, scenario: java Scenario, role: Role){
+pattern BoDRDViolation(constraint: BoDRDConstraint, scenario: java Scenario, role: Role){
 	BoDRDConstraint.left(constraint, left);
 	BoDRDConstraint.right(constraint, right);
    	find RHSDH(role, scenario, left);
@@ -180,7 +180,7 @@ pattern BoDRDPattern(constraint: BoDRDConstraint, scenario: java Scenario, role:
 }
 
 
-pattern BoDRPPattern(constraint: BoDRPConstraint, scenario: java Scenario, role: Role){
+pattern BoDRPViolation(constraint: BoDRPConstraint, scenario: java Scenario, role: Role){
 	BoDRPConstraint.left(constraint, left);
 	BoDRPConstraint.right(constraint, right);
 	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
@@ -196,7 +196,7 @@ pattern BoDRPPattern(constraint: BoDRPConstraint, scenario: java Scenario, role:
     find RSP(role, scenario, right);
 }
 
-pattern BoDDPPattern(constraint: BoDDPConstraint, demarcation: Demarcation){
+pattern BoDDPViolation(constraint: BoDDPConstraint, demarcation: Demarcation){
 	BoDDPConstraint.left(constraint, left);
 	BoDDPConstraint.right(constraint, right);
    	Permission.PD(left, demarcation);
@@ -212,14 +212,14 @@ pattern BoDDPPattern(constraint: BoDDPConstraint, demarcation: Demarcation){
 
 // Cardinality
 
-pattern CardinalityURPattern(constraint: CardinalityURConstraint, usageCount: java Integer){
+pattern CardinalityURViolation(constraint: CardinalityURConstraint, usageCount: java Integer){
 	CardinalityURConstraint.role(constraint, role);
 	CardinalityURConstraint.bound(constraint, bound);
    	usageCount == count User.UR(_, role);
    	check(usageCount > bound);
 }
 
-pattern CardinalityUDPattern(constraint: CardinalityUDConstraint, scenario: java Scenario, usageCount: java Integer){
+pattern CardinalityUDViolation(constraint: CardinalityUDConstraint, scenario: java Scenario, usageCount: java Integer){
 	CardinalityUDConstraint.demarcation(constraint, demarcation);
 	CardinalityUDConstraint.bound(constraint, bound);
 	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
@@ -228,7 +228,7 @@ pattern CardinalityUDPattern(constraint: CardinalityUDConstraint, scenario: java
    	check(usageCount > bound);
 }
 
-pattern CardinalityUPPattern(constraint: CardinalityUPConstraint, scenario: java Scenario, usageCount: java Integer){
+pattern CardinalityUPViolation(constraint: CardinalityUPConstraint, scenario: java Scenario, usageCount: java Integer){
 	CardinalityUPConstraint.permission(constraint, permission);
 	CardinalityUPConstraint.bound(constraint, bound);
 	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
@@ -237,7 +237,7 @@ pattern CardinalityUPPattern(constraint: CardinalityUPConstraint, scenario: java
    	check(usageCount > bound);
 }
 
-pattern CardinalityRDPattern(constraint: CardinalityRDConstraint, scenario: java Scenario, usageCount: java Integer){
+pattern CardinalityRDViolation(constraint: CardinalityRDConstraint, scenario: java Scenario, usageCount: java Integer){
 	CardinalityRDConstraint.demarcation(constraint, demarcation);
 	CardinalityRDConstraint.bound(constraint, bound);
 	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
@@ -246,7 +246,7 @@ pattern CardinalityRDPattern(constraint: CardinalityRDConstraint, scenario: java
    	check(usageCount > bound);
 }
 
-pattern CardinalityRPPattern(constraint: CardinalityRPConstraint, scenario: java Scenario, usageCount: java Integer){
+pattern CardinalityRPViolation(constraint: CardinalityRPConstraint, scenario: java Scenario, usageCount: java Integer){
 	CardinalityRPConstraint.permission(constraint, permission);
 	CardinalityRPConstraint.bound(constraint, bound);
 	PolicyDependentAuthorizationConstraint.temporalContext(constraint, context);
@@ -255,7 +255,7 @@ pattern CardinalityRPPattern(constraint: CardinalityRPConstraint, scenario: java
    	check(usageCount > bound);
 }
 
-pattern CardinalityDPPattern(constraint: CardinalityDPConstraint, usageCount: java Integer){
+pattern CardinalityDPViolation(constraint: CardinalityDPConstraint, usageCount: java Integer){
 	CardinalityDPConstraint.permission(constraint, permission);
 	CardinalityDPConstraint.bound(constraint, bound);
    	usageCount == count Demarcation.DP(_, permission);

@@ -88,21 +88,21 @@ public class RemoveBasicEntityGenerator {
         //removeDemarcationSuite.setCases(GeneratorUtils.randomSublist(removeDemarcationSuite.getCases(), 50, rangen));
         //removePermissionSuite.setCases(GeneratorUtils.randomSublist(removePermissionSuite.getCases(), 50, rangen));
 
-        List<TestCase> removeUserTestCasesCopy = new LinkedList<>(removeUserSuite.getCases());
-        removeUserSuite.addCases(removeUserTestCasesCopy);
-        removeUserSuite.addCases(removeUserTestCasesCopy);
-
-        List<TestCase> removeRoleTestCasesCopy = new LinkedList<>(removeRoleSuite.getCases());
-        removeRoleSuite.addCases(removeRoleTestCasesCopy);
-        removeRoleSuite.addCases(removeRoleTestCasesCopy);
-
-        List<TestCase> removeDemarcationTestCasesCopy = new LinkedList<>(removeDemarcationSuite.getCases());
-        removeDemarcationSuite.addCases(removeDemarcationTestCasesCopy);
-        removeDemarcationSuite.addCases(removeDemarcationTestCasesCopy);
-
-        List<TestCase> removePermissionTestCaseCopy = new LinkedList<>(removePermissionSuite.getCases());
-        removePermissionSuite.addCases(removePermissionTestCaseCopy);
-        removePermissionSuite.addCases(removePermissionTestCaseCopy);
+//        List<TestCase> removeUserTestCasesCopy = new LinkedList<>(removeUserSuite.getCases());
+//        removeUserSuite.addCases(removeUserTestCasesCopy);
+//        removeUserSuite.addCases(removeUserTestCasesCopy);
+//
+//        List<TestCase> removeRoleTestCasesCopy = new LinkedList<>(removeRoleSuite.getCases());
+//        removeRoleSuite.addCases(removeRoleTestCasesCopy);
+//        removeRoleSuite.addCases(removeRoleTestCasesCopy);
+//
+//        List<TestCase> removeDemarcationTestCasesCopy = new LinkedList<>(removeDemarcationSuite.getCases());
+//        removeDemarcationSuite.addCases(removeDemarcationTestCasesCopy);
+//        removeDemarcationSuite.addCases(removeDemarcationTestCasesCopy);
+//
+//        List<TestCase> removePermissionTestCaseCopy = new LinkedList<>(removePermissionSuite.getCases());
+//        removePermissionSuite.addCases(removePermissionTestCaseCopy);
+//        removePermissionSuite.addCases(removePermissionTestCaseCopy);
 
         collection.addSuites(removeUserSuite, removeRoleSuite, removeDemarcationSuite, removePermissionSuite);
 

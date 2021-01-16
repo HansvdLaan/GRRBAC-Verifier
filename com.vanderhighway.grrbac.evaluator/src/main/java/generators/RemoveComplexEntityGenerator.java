@@ -76,26 +76,26 @@ public class RemoveComplexEntityGenerator {
             }
         }
 
-        List<TestCase> removeTGRTestCasesCopy = new LinkedList<>(removeTGRSuite.getCases());
-        removeTGRSuite.addCases(removeTGRTestCasesCopy);
-        removeTGRSuite.addCases(removeTGRTestCasesCopy);
+//        List<TestCase> removeTGRTestCasesCopy = new LinkedList<>(removeTGRSuite.getCases());
+//        removeTGRSuite.addCases(removeTGRTestCasesCopy);
+//        removeTGRSuite.addCases(removeTGRTestCasesCopy);
+//
+//        List<TestCase> removeLockTARTestCaseCopy = new LinkedList<>(removeLockTARSuite.getCases());
+//        removeLockTARSuite.addCases(removeLockTARTestCaseCopy);
+//        removeLockTARSuite.addCases(removeLockTARTestCaseCopy);
+//
+//        List<TestCase> removeProtectTARTestCaseCopy = new LinkedList<>(removeProtectTARSuite.getCases());
+//        removeProtectTARSuite.addCases(removeProtectTARTestCaseCopy);
+//        removeProtectTARSuite.addCases(removeProtectTARTestCaseCopy);
+//
+//        List<TestCase> removeUnlockTestCaseCopy = new LinkedList<>(removeUnlockTARSuite.getCases());
+//        removeUnlockTARSuite.addCases(removeUnlockTestCaseCopy);
+//        removeUnlockTARSuite.addCases(removeUnlockTestCaseCopy);
 
-        List<TestCase> removeLockTARTestCaseCopy = new LinkedList<>(removeLockTARSuite.getCases());
-        removeLockTARSuite.addCases(removeLockTARTestCaseCopy);
-        removeLockTARSuite.addCases(removeLockTARTestCaseCopy);
-
-        List<TestCase> removeProtectTARTestCaseCopy = new LinkedList<>(removeProtectTARSuite.getCases());
-        removeProtectTARSuite.addCases(removeProtectTARTestCaseCopy);
-        removeProtectTARSuite.addCases(removeProtectTARTestCaseCopy);
-
-        List<TestCase> removeUnlockTestCaseCopy = new LinkedList<>(removeUnlockTARSuite.getCases());
-        removeUnlockTARSuite.addCases(removeUnlockTestCaseCopy);
-        removeUnlockTARSuite.addCases(removeUnlockTestCaseCopy);
-
-//        removeTGRSuite.setCases(GeneratorUtils.randomSublist(removeTGRSuite.getCases(), 80, rangen));
-//        removeLockTARSuite.setCases(GeneratorUtils.randomSublist(removeLockTARSuite.getCases(), 80, rangen));
-//        removeProtectTARSuite.setCases(GeneratorUtils.randomSublist(removeProtectTARSuite.getCases(), 80, rangen));
-//        removeUnlockTARSuite.setCases(GeneratorUtils.randomSublist(removeUnlockTARSuite.getCases(), 80, rangen));
+        removeTGRSuite.setCases(GeneratorUtils.randomSublist(removeTGRSuite.getCases(), 80, rangen));
+        removeLockTARSuite.setCases(GeneratorUtils.randomSublist(removeLockTARSuite.getCases(), 80, rangen));
+        removeProtectTARSuite.setCases(GeneratorUtils.randomSublist(removeProtectTARSuite.getCases(), 80, rangen));
+        removeUnlockTARSuite.setCases(GeneratorUtils.randomSublist(removeUnlockTARSuite.getCases(), 80, rangen));
 
         collection.addSuites(removeTGRSuite, removeLockTARSuite, removeProtectTARSuite, removeUnlockTARSuite);
 

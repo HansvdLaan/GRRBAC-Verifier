@@ -119,66 +119,66 @@ public class AuthorizationConstraintsTests {
 
         modifier.addSoDURConstraint("SoDUR1", employee, manager);
         automaticModifier.getTransformation().getExecutionSchema().startUnscheduledExecution();
-        assertNumberOfMatches(SoDURPattern.instance(), 1);
+        assertNumberOfMatches(SoDURViolation.instance(), 1);
 
         modifier.addSoDUPConstraint("SoDUP1", openOffice, kitchen, always);
 
         automaticModifier.getTransformation().getExecutionSchema().startUnscheduledExecution();
-        assertNumberOfMatches(SoDUPPattern.instance(), 3);
+        assertNumberOfMatches(SoDUPViolation.instance(), 3);
 
         modifier.addBoDURConstraint("BoDUR1", employee, manager);
-        assertNumberOfMatches(BoDURPattern.instance(), 1);
+        assertNumberOfMatches(BoDURViolation.instance(), 1);
 
         modifier.addBoDUPConstraint("BoDUP1", openOffice, dummyPermission, holidays);
-        assertNumberOfMatches(BoDUPPattern.instance(), 1);
+        assertNumberOfMatches(BoDUPViolation.instance(), 1);
         modifier.addBoDUPConstraint("BoDUP2", openOffice, dummyPermission, workingHours);
-        assertNumberOfMatches(BoDUPPattern.instance(), 4);
+        assertNumberOfMatches(BoDUPViolation.instance(), 4);
 
         modifier.addPrerequisiteURConstraint("PreReqUR1", manager, employee);
-        assertNumberOfMatches(PrerequisiteURPattern.instance(), 0);
+        assertNumberOfMatches(PrerequisiteURViolation.instance(), 0);
         modifier.addPrerequisiteURConstraint("PreReqUR2", employee, dummyRole);
-        assertNumberOfMatches(PrerequisiteURPattern.instance(), 2);
+        assertNumberOfMatches(PrerequisiteURViolation.instance(), 2);
 
         modifier.addPrerequisiteUDConstraint("PreReqUD1", canteen, office, always);
-        assertNumberOfMatches(PrerequisiteUDPattern.instance(), 0);
+        assertNumberOfMatches(PrerequisiteUDViolation.instance(), 0);
         modifier.addPrerequisiteUDConstraint("PreReqUD1", canteen, dummyDemarcation, always);
-        assertNumberOfMatches(PrerequisiteUDPattern.instance(), 3);
+        assertNumberOfMatches(PrerequisiteUDViolation.instance(), 3);
 
         modifier.addCardinalityURConstraint("CardUR1", employee, 1);
-        assertNumberOfMatches(CardinalityURPattern.instance(), 1);
+        assertNumberOfMatches(CardinalityURViolation.instance(), 1);
 
         modifier.addCardinalityRPConstraint("CardDP1", kitchen, 1, holidays);
-        assertNumberOfMatches(CardinalityRPPattern.instance(), 0);
+        assertNumberOfMatches(CardinalityRPViolation.instance(), 0);
         modifier.addCardinalityRPConstraint("CardDP1", kitchen, 1, workingHours);
-        assertNumberOfMatches(CardinalityRPPattern.instance(), 1);
+        assertNumberOfMatches(CardinalityRPViolation.instance(), 1);
 
 
         //Modifying a few things to change the number of violated constraints
 
         modifier.assignRoleToUser(user3, employee);
         modifier.assignRoleToUser(user3, manager);
-        assertNumberOfMatches(SoDURPattern.instance(), 2);
-        assertNumberOfMatches(SoDUPPattern.instance(), 5);
-        assertNumberOfMatches(BoDURPattern.instance(), 1);
-        assertNumberOfMatches(BoDUPPattern.instance(), 7);
-        assertNumberOfMatches(PrerequisiteURPattern.instance(), 3);
-        assertNumberOfMatches(PrerequisiteUDPattern.instance(), 5);
-        assertNumberOfMatches(CardinalityURPattern.instance(), 1);
-        assertNumberOfMatches(CardinalityRPPattern.instance(), 1);
+        assertNumberOfMatches(SoDURViolation.instance(), 2);
+        assertNumberOfMatches(SoDUPViolation.instance(), 5);
+        assertNumberOfMatches(BoDURViolation.instance(), 1);
+        assertNumberOfMatches(BoDUPViolation.instance(), 7);
+        assertNumberOfMatches(PrerequisiteURViolation.instance(), 3);
+        assertNumberOfMatches(PrerequisiteUDViolation.instance(), 5);
+        assertNumberOfMatches(CardinalityURViolation.instance(), 1);
+        assertNumberOfMatches(CardinalityRPViolation.instance(), 1);
 
         modifier.deassignRoleFromUser(user1, employee);
         modifier.deassignRoleFromUser(user2, employee);
         modifier.deassignRoleFromUser(user2, manager);
-        assertNumberOfMatches(CardinalityURPattern.instance(), 0);
+        assertNumberOfMatches(CardinalityURViolation.instance(), 0);
 
         modifier.addTemporalGrantRule(always, "rule_deny_everything1", employee, office, false, 10);
         modifier.addTemporalGrantRule(always, "rule_deny_everything2", employee, canteen, false, 10);
         modifier.addTemporalGrantRule(always, "rule_deny_everything3", manager, office, false, 10);
         modifier.addTemporalGrantRule(always, "rule_deny_everything4", manager, canteen, false, 10);
 
-        assertNumberOfMatches(SoDUPPattern.instance(), 0);
-        assertNumberOfMatches(CardinalityRPPattern.instance(), 0);
-        assertNumberOfMatches(PrerequisiteUDPattern.instance(), 0);
+        assertNumberOfMatches(SoDUPViolation.instance(), 0);
+        assertNumberOfMatches(CardinalityRPViolation.instance(), 0);
+        assertNumberOfMatches(PrerequisiteUDViolation.instance(), 0);
     }
 
     public void assertNumberOfMatches(BaseGeneratedEMFQuerySpecification pattern, int expectedCount) {

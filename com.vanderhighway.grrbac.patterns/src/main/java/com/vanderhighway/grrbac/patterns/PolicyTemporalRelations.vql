@@ -160,11 +160,11 @@ pattern Scenarios(out scenario: java Scenario) {
 }
 
 pattern ScenarioTemporalContext(in scenario: java Scenario, out context: TemporalContext) {
-	find ValidDayOfYearAllCombinedInstance_To_Scenario(ys, start, end, scenario);
-	find ValidDayOfYearAllCombinedInstance_TemporalContext(ys, start, end, context);
+	find ValidDayOfYearAllCombinedInstance_To_Scenario(day, start, end, scenario);
+	find ValidDayOfYearAllCombinedInstance_TemporalContext(day, start, end, context);
 } or {
-	find ValidDayOfWeekAndMonthAllCombinedInstance_To_Scenario(ys, start, end, scenario);
-	find ValidDayOfWeekAndMonthAllCombinedInstance_TemporalContext(ys, start, end, context);
+	find ValidDayOfWeekAndMonthAllCombinedInstance_To_Scenario(day, start, end, scenario);
+	find ValidDayOfWeekAndMonthAllCombinedInstance_TemporalContext(day, start, end, context);
 }
 
 //pattern Scenarios(scenario: java Scenario) {

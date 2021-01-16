@@ -52,21 +52,21 @@ public class AddBasicEntityGenerator {
         }
 
         // Duplicate all testcases times 3
-        List<TestCase> addUserTestCasesCopy = new LinkedList<>(addUserSuite.getCases());
-        addUserSuite.addCases(addUserTestCasesCopy);
-        addUserSuite.addCases(addUserTestCasesCopy);
-
-        List<TestCase> addRoleTestCasesCopy = new LinkedList<>(addRoleSuite.getCases());
-        addRoleSuite.addCases(addRoleTestCasesCopy);
-        addRoleSuite.addCases(addRoleTestCasesCopy);
-
-        List<TestCase> addDemarcationTestCasesCopy = new LinkedList<>(addDemarcationSuite.getCases());
-        addDemarcationSuite.addCases(addDemarcationTestCasesCopy);
-        addDemarcationSuite.addCases(addDemarcationTestCasesCopy);
-
-        List<TestCase> addPermissionTestCaseCopy = new LinkedList<>(addPermissionSuite.getCases());
-        addPermissionSuite.addCases(addPermissionTestCaseCopy);
-        addPermissionSuite.addCases(addPermissionTestCaseCopy);
+//        List<TestCase> addUserTestCasesCopy = new LinkedList<>(addUserSuite.getCases());
+//        addUserSuite.addCases(addUserTestCasesCopy);
+//        addUserSuite.addCases(addUserTestCasesCopy);
+//
+//        List<TestCase> addRoleTestCasesCopy = new LinkedList<>(addRoleSuite.getCases());
+//        addRoleSuite.addCases(addRoleTestCasesCopy);
+//        addRoleSuite.addCases(addRoleTestCasesCopy);
+//
+//        List<TestCase> addDemarcationTestCasesCopy = new LinkedList<>(addDemarcationSuite.getCases());
+//        addDemarcationSuite.addCases(addDemarcationTestCasesCopy);
+//        addDemarcationSuite.addCases(addDemarcationTestCasesCopy);
+//
+//        List<TestCase> addPermissionTestCaseCopy = new LinkedList<>(addPermissionSuite.getCases());
+//        addPermissionSuite.addCases(addPermissionTestCaseCopy);
+//        addPermissionSuite.addCases(addPermissionTestCaseCopy);
 
         collection.addSuites(addUserSuite, addRoleSuite, addDemarcationSuite, addPermissionSuite);
 

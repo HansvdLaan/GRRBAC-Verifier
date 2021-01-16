@@ -144,13 +144,13 @@ public class TemporalContextModificationsGenerator {
         int n =  10;
         Random rangen = new Random(seed);
 
-        List<TestCase> addTemporalContextTestCasesCopy = new LinkedList<>(addTemporalContext.getCases());
-        addTemporalContext.addCases(addTemporalContextTestCasesCopy);
-        addTemporalContext.addCases(addTemporalContextTestCasesCopy);
-
-        List<TestCase> removeTemporalContextTestCasesCopy = new LinkedList<>(removeTemporalContext.getCases());
-        removeTemporalContext.addCases(removeTemporalContextTestCasesCopy);
-        removeTemporalContext.addCases(removeTemporalContextTestCasesCopy);
+//        List<TestCase> addTemporalContextTestCasesCopy = new LinkedList<>(addTemporalContext.getCases());
+//        addTemporalContext.addCases(addTemporalContextTestCasesCopy);
+//        addTemporalContext.addCases(addTemporalContextTestCasesCopy);
+//
+//        List<TestCase> removeTemporalContextTestCasesCopy = new LinkedList<>(removeTemporalContext.getCases());
+//        removeTemporalContext.addCases(removeTemporalContextTestCasesCopy);
+//        removeTemporalContext.addCases(removeTemporalContextTestCasesCopy);
 
         collection.addSuites(addTemporalContext, removeTemporalContext);
 

@@ -84,13 +84,13 @@ public class AssignEntityGenerator {
             }
         }
 
-        List<TestCase> assignURTestCasesCopy = new LinkedList<>(assignURSuite.getCases());
-        assignURSuite.addCases(assignURTestCasesCopy);
-        assignURSuite.addCases(assignURTestCasesCopy);
-
-        List<TestCase> assignDPTestCasesCopy = new LinkedList<>(assignDPSuite.getCases());
-        assignDPSuite.addCases(assignDPTestCasesCopy);
-        assignDPSuite.addCases(assignDPTestCasesCopy);
+//        List<TestCase> assignURTestCasesCopy = new LinkedList<>(assignURSuite.getCases());
+//        assignURSuite.addCases(assignURTestCasesCopy);
+//        assignURSuite.addCases(assignURTestCasesCopy);
+//
+//        List<TestCase> assignDPTestCasesCopy = new LinkedList<>(assignDPSuite.getCases());
+//        assignDPSuite.addCases(assignDPTestCasesCopy);
+//        assignDPSuite.addCases(assignDPTestCasesCopy);
 
         //assignURSuite.setCases(GeneratorUtils.randomSublist(assignURSuite.getCases(), 500, rangen));
 

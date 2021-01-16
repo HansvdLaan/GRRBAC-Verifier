@@ -931,54 +931,54 @@ public class ShowCommand implements Runnable {
             }
         }
 
-        CLIContainer.getInstance().getEngine().getMatcher(SoDURPattern.instance()).getAllMatches(null, user).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(SoDUDPattern.instance()).getAllMatches(null, scenario, user).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(SoDUPPattern.instance()).getAllMatches(null, scenario, user).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(SoDRDPattern.instance()).getAllMatches(null, scenario, role).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(SoDRPPattern.instance()).getAllMatches(null, scenario, role).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(SoDDPPattern.instance()).getAllMatches(null, demarcation).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(PrerequisiteURPattern.instance()).getAllMatches(null, user).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(PrerequisiteUDPattern.instance()).getAllMatches(null, scenario, user).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(PrerequisiteUPPattern.instance()).getAllMatches(null, scenario, user).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(PrerequisiteRDPattern.instance()).getAllMatches(null, scenario, role).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(PrerequisiteRPPattern.instance()).getAllMatches(null, scenario, role).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(PrerequisiteDPPattern.instance()).getAllMatches(null, demarcation).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(BoDURPattern.instance()).getAllMatches(null, user).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(BoDUDPattern.instance()).getAllMatches(null, scenario, user).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(BoDUPPattern.instance()).getAllMatches(null, scenario, user).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(BoDRDPattern.instance()).getAllMatches(null , scenario, role).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(BoDRPPattern.instance()).getAllMatches(null, scenario, role).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(BoDDPPattern.instance()).getAllMatches(null, demarcation).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(CardinalityURPattern.instance()).getAllMatches().stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(CardinalityUDPattern.instance()).getAllMatches(null, scenario, null).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(CardinalityUPPattern.instance()).getAllMatches(null, scenario, null).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(CardinalityRDPattern.instance()).getAllMatches(null, scenario, null).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(CardinalityRPPattern.instance()).getAllMatches(null, scenario, null).stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
-        CLIContainer.getInstance().getEngine().getMatcher(CardinalityDPPattern.instance()).getAllMatches().stream().forEach(c -> System.out.println(
-                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Pattern","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(SoDURViolation.instance()).getAllMatches(null, user).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(SoDUDViolation.instance()).getAllMatches(null, scenario, user).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(SoDUPViolation.instance()).getAllMatches(null, scenario, user).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(SoDRDViolation.instance()).getAllMatches(null, scenario, role).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(SoDRPViolation.instance()).getAllMatches(null, scenario, role).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(SoDDPViolation.instance()).getAllMatches(null, demarcation).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(PrerequisiteURViolation.instance()).getAllMatches(null, user).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(PrerequisiteUDViolation.instance()).getAllMatches(null, scenario, user).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(PrerequisiteUPViolation.instance()).getAllMatches(null, scenario, user).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(PrerequisiteRDViolation.instance()).getAllMatches(null, scenario, role).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(PrerequisiteRPViolation.instance()).getAllMatches(null, scenario, role).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(PrerequisiteDPViolation.instance()).getAllMatches(null, demarcation).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(BoDURViolation.instance()).getAllMatches(null, user).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(BoDUDViolation.instance()).getAllMatches(null, scenario, user).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(BoDUPViolation.instance()).getAllMatches(null, scenario, user).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(BoDRDViolation.instance()).getAllMatches(null , scenario, role).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(BoDRPViolation.instance()).getAllMatches(null, scenario, role).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(BoDDPViolation.instance()).getAllMatches(null, demarcation).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(CardinalityURViolation.instance()).getAllMatches().stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(CardinalityUDViolation.instance()).getAllMatches(null, scenario, null).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(CardinalityUPViolation.instance()).getAllMatches(null, scenario, null).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(CardinalityRDViolation.instance()).getAllMatches(null, scenario, null).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(CardinalityRPViolation.instance()).getAllMatches(null, scenario, null).stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
+        CLIContainer.getInstance().getEngine().getMatcher(CardinalityDPViolation.instance()).getAllMatches().stream().forEach(c -> System.out.println(
+                CLIContainer.getInstance().getIndentation() + c.patternName().replace("com.vanderhighway.grrbac.patterns.","").replace("Violation","") + " - " + c.prettyPrint().replace("\"","")));
     }
 
     @CommandLine.Command(sortOptions = false, mixinStandardHelpOptions = true, subcommands = {CommandLine.HelpCommand.class},
