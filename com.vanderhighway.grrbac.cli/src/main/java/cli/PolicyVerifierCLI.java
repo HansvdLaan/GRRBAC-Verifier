@@ -158,7 +158,7 @@ public class PolicyVerifierCLI {
                     " |_|   \\___/|_|_|\\___|\\__, | \\_/ \\___|_|  |_|_| |_|\\___|_|   \n" +
                     "                      |___/                                  ");
             System.out.println("For GR-RBAC policies.");
-            System.out.println("version 1.0.3");
+            System.out.println("version 1.0.4");
             System.out.println();
 
             URI uri = URI.createFileURI(args[0]);

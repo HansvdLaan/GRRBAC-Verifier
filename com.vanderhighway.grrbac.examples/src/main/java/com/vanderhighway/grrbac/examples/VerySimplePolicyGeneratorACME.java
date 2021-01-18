@@ -43,7 +43,7 @@ public class VerySimplePolicyGeneratorACME {
 		List<String> weekDays = Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
 		List<String> weekEnd = Arrays.asList("Saturday", "Sunday");
 
-		GeneratorUtil.addManyTemporalContextInstances(modifier, workingHours, weekDays, Arrays.asList(new IntegerInterval(480,1019)));
+		GeneratorUtil.addManyTemporalContextInstances(modifier, workingHours, weekDays, Arrays.asList(new IntegerInterval(480,1020)));
 		GeneratorUtil.addManyTemporalContextInstances(modifier, lunchBreaks, weekDays, Arrays.asList(new IntegerInterval(720,780)));
 
 		GeneratorUtil.addManyTemporalContextInstances(modifier, holidays, Arrays.asList("25_December"), Arrays.asList(new IntegerInterval(0, 1439)));

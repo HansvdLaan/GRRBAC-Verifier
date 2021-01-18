@@ -23,11 +23,11 @@
   <contextContainer name="DummyContextContainer">
     <temporalContexts name="Always"/>
     <temporalContexts name="WorkingHours" temporalGrantRules="TGR1 TGR5">
-      <instances start="480" end="1019" validDay="Monday" name="WorkingHours-Monday-1"/>
-      <instances start="480" end="1019" validDay="Tuesday" name="WorkingHours-Tuesday-1"/>
-      <instances start="480" end="1019" validDay="Wednesday" name="WorkingHours-Wednesday-1"/>
-      <instances start="480" end="1019" validDay="Thursday" name="WorkingHours-Thursday-1"/>
-      <instances start="480" end="1019" validDay="Friday" name="WorkingHours-Friday-1"/>
+      <instances start="480" end="1020" validDay="Monday" name="WorkingHours-Monday-1"/>
+      <instances start="480" end="1020" validDay="Tuesday" name="WorkingHours-Tuesday-1"/>
+      <instances start="480" end="1020" validDay="Wednesday" name="WorkingHours-Wednesday-1"/>
+      <instances start="480" end="1020" validDay="Thursday" name="WorkingHours-Thursday-1"/>
+      <instances start="480" end="1020" validDay="Friday" name="WorkingHours-Friday-1"/>
     </temporalContexts>
     <temporalContexts name="LunchBreaks" temporalGrantRules="TGR2">
       <instances start="720" end="780" validDay="Monday" name="LunchBreaks-Monday-1"/>

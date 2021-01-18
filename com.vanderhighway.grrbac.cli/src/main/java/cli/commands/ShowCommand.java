@@ -29,7 +29,7 @@ public class ShowCommand implements Runnable {
     }
 
     @CommandLine.Command(sortOptions = false, mixinStandardHelpOptions = true, subcommands = {CommandLine.HelpCommand.class},
-            description = "Show all basic entities and relations (Users, Roles, Demarcations, Permissions, UR, DP)")
+            description = "Show all basic entities and relations (Users, Roles, Demarcations, Permissions, UR, RSD (with hierarchies) and DP)")
     public void basic() throws ModelManipulationException {
 
         System.out.println("Users:");
@@ -52,9 +52,9 @@ public class ShowCommand implements Runnable {
         demarcations();
         CLIContainer.getInstance().decreaseIdentation();
 
-        System.out.println("RSD:");
+        System.out.println("RSD (with hierarchies):");
         CLIContainer.getInstance().increaseIndentation();
-        RSD(null, null);
+        RHSDH(null, null);
         CLIContainer.getInstance().decreaseIdentation();
 
         System.out.println("Permissions:");
