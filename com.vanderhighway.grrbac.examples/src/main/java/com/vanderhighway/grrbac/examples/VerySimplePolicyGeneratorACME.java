@@ -83,11 +83,12 @@ public class VerySimplePolicyGeneratorACME {
 		modifier.assignPermissionToDemarcation(demPurple, permKitchen);
 		modifier.assignPermissionToDemarcation(demRed, permSafe);
 
-		modifier.addTemporalGrantRule(workingHours, "TGR1", roleEmployee, demOrange, true, 3);
-		modifier.addTemporalGrantRule(lunchBreaks, "TGR2", roleEmployee, demPurple, true, 3);
-		modifier.addTemporalGrantRule(holidays, "TGR3", roleEmployee, demOrange, false, 4);
-		modifier.addTemporalGrantRule(holidays, "TGR4", roleEmployee, demPurple, false, 4);
-		modifier.addTemporalGrantRule(workingHours, "TGR5", roleManager, demRed, true, 3);
+		modifier.addTemporalGrantRule(always, "TGR1", roleEmployee, demGreen, true, 1);
+		modifier.addTemporalGrantRule(workingHours, "TGR2", roleEmployee, demOrange, true, 2);
+		modifier.addTemporalGrantRule(lunchBreaks, "TGR3", roleEmployee, demPurple, true, 2);
+		modifier.addTemporalGrantRule(holidays, "TGR4", roleEmployee, demOrange, false, 3);
+		modifier.addTemporalGrantRule(holidays, "TGR5", roleEmployee, demPurple, false, 3);
+		modifier.addTemporalGrantRule(workingHours, "TGR6", roleManager, demRed, true, 2);
 
 		// Add Simple Building
 		SecurityZone szLobby = modifier.addSecurityZone("ZoneLobby", true);

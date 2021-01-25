@@ -158,7 +158,7 @@ public class PolicyVerifierCLI {
                     " |_|   \\___/|_|_|\\___|\\__, | \\_/ \\___|_|  |_|_| |_|\\___|_|   \n" +
                     "                      |___/                                  ");
             System.out.println("For GR-RBAC policies.");
-            System.out.println("version 1.0.4");
+            System.out.println("version 1.0.5");
             System.out.println();
 
             URI uri = URI.createFileURI(args[0]);
@@ -179,7 +179,7 @@ public class PolicyVerifierCLI {
             coteUtils.addMissingDaySchedules(resource, (SiteAccessControlSystem) resource.getContents().get(0));
             fileLoadSpinner.stop();
 
-            Spinner queryEngineSpinner = new Spinner("Initializing Query Engine... ");
+            Spinner queryEngineSpinner = new Spinner("Creating Query Engine... ");
             new Thread(queryEngineSpinner).start();
 
             ViatraQueryEngineOptions options = ViatraQueryEngineOptions.defineOptions()
@@ -207,7 +207,7 @@ public class PolicyVerifierCLI {
 
             modelModifiersSpinner.stop();
 
-            Spinner queriesSpinner = new Spinner("Initializing Queries... ");
+            Spinner queriesSpinner = new Spinner("Initializing Query Engine... ");
             new Thread(queriesSpinner).start();
 
             // TODO: do proper parameter handling with JLine and PicoCLI
